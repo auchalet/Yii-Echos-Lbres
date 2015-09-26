@@ -9,6 +9,7 @@ namespace frontend\controllers;
 use common\repository\PostRepository;
 use common\repository\CategoryRepository;
 use common\repository\TopicRepository;
+use frontend\models\ForumPost;
 
 
 class ForumController extends \yii\web\Controller
@@ -66,9 +67,8 @@ class ForumController extends \yii\web\Controller
         return $this->render('post',['post'=>$post]);
     }
     
-    public function actionAnswer($id_topic){
 
-        //Affichage du formulaire de reponse
-    }
+    
+    
 
 }

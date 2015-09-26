@@ -8,6 +8,7 @@ use frontend\models\ForumPostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\repository\PostRepository;
 
 /**
  * PostController implements the CRUD actions for ForumPost model.
@@ -121,4 +122,45 @@ class PostController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    
+    /**
+     * Action réponse : Affiche un formulaire _answer (à changer en anwer qui redirige vers le _answer)
+     * Si formulaire rempli, ajoute le post et redirige vers le topic
+     * @param int $id_topic
+     * @return vue 
+     */
+    public function actionAnswer($id_topic) {
+
+        $model = new ForumPost();
+        $model->title=NULL;
+        $model->id_topic=intval($id_topic);
+        $model->id_user=Yii::$app->user->id;        
+        $model->createdAt=date("Y-m-d H:i:s", time());
+        $model->updatedAt=date("Y-m-d H:i:s", time());
+
+        
+        $post=Yii::$app->request->getBodyParam('ForumPost');
+        
+        if(isset($post)&&!empty($post)){
+            $postRepo=new PostRepository();
+            $model->title=NULL;
+            var_dump($post);
+            $model->content=$post['content'];
+            if($postRepo->insert($model)){
+                return $this->redirect(['/forum/posts', 'id_topic' => $model->id_topic]);
+            }    
+
+
+        }
+        
+        
+        
+        //Affichage du formulaire de reponse
+        return $this->render('_answer', [
+                    'id_topic' => $id_topic,
+                    'model' => $model
+        ]);
+    }
+
 }

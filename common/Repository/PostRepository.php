@@ -37,5 +37,28 @@ class PostRepository extends Repository {
         
         return $items;
     }
+    
+    /**
+     * Insertion d'un forum_post (à compléter)
+     * @param Post $post
+     * @param type $where
+     * @param type $params
+     */
+    public function insert($post, $where=null, $params=null){
+        
+        if($post->title==null){
+            $query=$this->db->createCommand("INSERT INTO forum_post (content, score, id_user, id_topic, createdAt, updatedAt) VALUES ('$post->content', 0, $post->id_user, $post->id_topic, '$post->createdAt', '$post->updatedAt' )");
+        }
+        else{
+            $query=$this->db->createCommand("INSERT INTO forum_post (title, content, score, id_user, id_topic, createdAt, updatedAt) VALUES ('$post->title', '$post->content', 0, $post->id_user, $post->id_topic, '$post->createdAt', '$post->updatedAt' )");
+        }
+        if($query->execute()){
+            return true;
+        }else{
+            throw new Exception('Erreur dans la création du Post');
+        }
+        
+        
+    }
 
 }

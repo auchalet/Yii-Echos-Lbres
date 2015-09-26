@@ -31,10 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::encode($val['content']) ?>
         </div>
         
-        <?= Html::a('Répondre', ['/forum/answer','id_topic'=>$val['id']], ['class'=>'btn btn-primary']) ?>
 
     
     <?php endforeach; ?>
+    <?= Html::a('Répondre', ['/post/answer','id_topic'=>$val['id_topic']], ['class'=>'btn btn-primary']) ?>
+
         
     
 </div>
