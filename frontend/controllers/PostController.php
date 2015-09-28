@@ -86,8 +86,10 @@ class PostController extends Controller
         $model->updatedAt=date("Y-m-d H:i:s", time());
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['forum/posts', 'id_topic' => $model->id_topic]);
         } else {
+            
+            
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -157,7 +159,7 @@ class PostController extends Controller
         
         
         //Affichage du formulaire de reponse
-        return $this->render('_answer', [
+        return $this->render('answer', [
                     'id_topic' => $id_topic,
                     'model' => $model
         ]);

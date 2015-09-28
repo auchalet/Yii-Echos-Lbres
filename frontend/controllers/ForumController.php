@@ -10,6 +10,7 @@ use common\repository\PostRepository;
 use common\repository\CategoryRepository;
 use common\repository\TopicRepository;
 use frontend\models\ForumPost;
+use common\models\User;
 
 
 class ForumController extends \yii\web\Controller
@@ -53,18 +54,18 @@ class ForumController extends \yii\web\Controller
     {
         $postRepo=new PostRepository;
         $posts=$postRepo->getAll("id_topic=$id_topic", ['orderBy'=>'createdAt']);
-        return $this->render('posts',['posts'=>$posts]);
-    }
-    
-    /**
-     * 
-     * @param int $id_post : l'ID du post
-     * @return la vue forum/post : détail du post
-     */
-    public function actionPost($id_post){
-        $postRepo=new PostRepository();
-        $post=$postRepo->getAll("id=$id_post");
-        return $this->render('post',['post'=>$post]);
+        
+        $topicRepo=new TopicRepository;
+        $topic=$topicRepo->getAll("id=$id_topic");
+        
+        foreach($posts as $k => $v){
+            $user=User::findOne($v['id_user']);
+            $users[$k]=$user->attributes;
+        }
+        
+        
+        //$author=$user->findIdentity($posts['id_user']);
+        return $this->render('posts',['topic'=>$topic, 'posts'=>$posts, 'author'=>$users]);
     }
     
 

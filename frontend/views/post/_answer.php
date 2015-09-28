@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id_user')->textInput(['value'=>Yii::$app->user->id, 'disabled'=>'true']) ?>
 
-    <?= $form->field($model, 'id_topic')->textInput(['value'=>$id_topic]) ?>
+    <?= $form->field($model, 'id_topic')->textInput(['value'=>$model->id_topic, 'disabled'=>'true']) ?>
 
 
     <div class="form-group">

@@ -43,7 +43,7 @@ class ForumPost extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content', 'score', 'id_user', 'id_topic', 'createdAt', 'updatedAt'], 'required'],
+            [['content', 'score', 'id_user', 'id_topic', 'createdAt', 'updatedAt'], 'required'],
             [['content', 'meta_title', 'meta_description', 'meta_keyword'], 'string'],
             [['score'], 'number'],
             [['id_user', 'id_topic'], 'integer'],

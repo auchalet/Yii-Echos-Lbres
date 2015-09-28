@@ -13,29 +13,34 @@ use yii\bootstrap\Button;
 $this->title = 'Categorie';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1>Catégorie</h1>
+<h1>Topic : <?= $topic[0]['title'] ?></h1>
 
-<h2>Posts associés</h2>
 
 <div class="tab-content">
     
     <?php foreach ($posts as $attr => $val): ?>
     
-        <h1><?= Html::encode($val['title']) ?></h1>
-        <br>
-        <i>Créé le : <?= Html::encode($val['createdAt']) ?></i>
-        <br>
-        <i>Modifié le : <?= Html::encode($val['updatedAt']) ?></i>
-        <br>
+        <div class="tab-content">
+            <i>Créé le : <?= Html::encode($val['createdAt']) ?> par </i><strong><?= $author[$attr]['username'] ?></strong><br>
+            <i>Modifié le : <?= Html::encode($val['updatedAt']) ?></i>
+            
+            <?php if($val['id_user']==Yii::$app->user->id): ?>
+                <?= Html::a('Modifier', ['/post/update','id'=>$val['id']], ['class'=>'btn btn-primary']) ?>
+            <?php endif; ?>
+        </div>
+
         <div class="container">
             <?= Html::encode($val['content']) ?>
         </div>
-        
-
+        <br>
+        <br>
     
     <?php endforeach; ?>
-    <?= Html::a('Répondre', ['/post/answer','id_topic'=>$val['id_topic']], ['class'=>'btn btn-primary']) ?>
+    <?php if(!Yii::$app->user->isGuest): ?>
+        <br>
+        <br>
+    <?= Html::a('Répondre au topic', ['/post/answer','id_topic'=>$val['id_topic']], ['class'=>'btn btn-primary']) ?>
 
-        
+    <?php endif; ?>    
     
 </div>

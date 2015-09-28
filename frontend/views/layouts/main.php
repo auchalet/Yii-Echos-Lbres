@@ -65,9 +65,7 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
-<div>
-test
-</div>
+
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
