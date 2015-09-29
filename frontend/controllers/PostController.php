@@ -147,7 +147,7 @@ class PostController extends Controller
         if(isset($post)&&!empty($post)){
             $postRepo=new PostRepository();
             $model->title=NULL;
-            var_dump($post);
+            
             $model->content=$post['content'];
             if($postRepo->insert($model)){
                 return $this->redirect(['/forum/posts', 'id_topic' => $model->id_topic]);
@@ -163,6 +163,45 @@ class PostController extends Controller
                     'id_topic' => $id_topic,
                     'model' => $model
         ]);
+    }
+    
+   
+    /** Gestion du vote pour un Post : ne marche pas **/
+    
+    /**
+     * Incrémente le score du Post
+     * @param int $id : l'ID du Post
+     * @return la vue forum/posts
+     */
+    public function actionVote($id_topic){
+    	 return $this->render('/forum/posts',['id_topic'=>$id_topic]);
+    }    
+    
+    
+    /**
+     * Incrémente le score du Post
+     * @param int $id : l'ID du Post
+     * @return la vue forum/posts
+     */
+    public function actionVoteup($id, $score){
+    	$postRepo=new PostRepository();
+    	$postRepo->vote('plus', "id=$id");
+    	$post=$postRepo->getAll("id=$id");
+    	
+    	
+    	return $this->render('vote', ['id_topic'=>$post[0]['id_topic'],'score'=>$post[0]['score'], 'id'=>$id]);
+    }
+    
+    /**
+     * Décrémente le score du Post
+     * @param int $id : l'ID du Post
+     * @return la vue forum/posts
+     */
+    public function actionVotedown($id,$score){
+    	$postRepo=new PostRepository();
+    	$postRepo->vote('moins', "id=$id");
+    	$post=$postRepo->getAll("id=$id");
+    	return $this->render('vote', ['id_topic'=>$post[0]['id_topic'],'id'=>$id,'score'=>$post[0]['score']]);
     }
 
 }

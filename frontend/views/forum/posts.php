@@ -5,6 +5,8 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Button;
 
+
+
 /* Vue de la fonction actionPosts()
 /* @var $this yii\web\View */
 /* @var $searchModel frontends\ForumPostSearch */
@@ -24,9 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
             <i>Créé le : <?= Html::encode($val['createdAt']) ?> par </i><strong><?= $author[$attr]['username'] ?></strong><br>
             <i>Modifié le : <?= Html::encode($val['updatedAt']) ?></i>
             
+			<?= $this->render('/post/vote', ['score'=>$val['score'], 'id'=>$val['id']]) ?>
+            
             <?php if($val['id_user']==Yii::$app->user->id): ?>
                 <?= Html::a('Modifier', ['/post/update','id'=>$val['id']], ['class'=>'btn btn-primary']) ?>
             <?php endif; ?>
+
         </div>
 
         <div class="container">
@@ -34,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <br>
         <br>
+
     
     <?php endforeach; ?>
     <?php if(!Yii::$app->user->isGuest): ?>

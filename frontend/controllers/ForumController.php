@@ -32,8 +32,8 @@ class ForumController extends \yii\web\Controller
 
     /**
      * 
-     * @param int $id_category : l'ID de la catégory
-     * @return la vue forum/topics : tous les topics d'une catégorie
+     * @param int $id_category : l'ID de la category
+     * @return la vue forum/topics : tous les topics d'une categorie
      */
     public function actionTopics($id_category)
     {

@@ -52,6 +52,7 @@ class PostRepository extends Repository {
         else{
             $query=$this->db->createCommand("INSERT INTO forum_post (title, content, score, id_user, id_topic, createdAt, updatedAt) VALUES ('$post->title', '$post->content', 0, $post->id_user, $post->id_topic, '$post->createdAt', '$post->updatedAt' )");
         }
+        
         if($query->execute()){
             return true;
         }else{
@@ -59,6 +60,35 @@ class PostRepository extends Repository {
         }
         
         
+    }
+    
+    /**
+     * Update le score du Post
+     */
+    public function vote($type,$where=null){
+    	if($type=="plus"){
+    		$query=$this->db->createCommand("UPDATE forum_post
+    				SET score=score+1
+    				WHERE $where");
+    	}
+    	elseif($type=="moins"){
+    		$query=$this->db->createCommand("UPDATE forum_post
+    				SET score=score-1
+    				WHERE $where");
+    	}
+    	elseif($type="reset"){
+    		$query=$this->db->createCommand("UPDATE forum_post
+    				SET score=0
+    				WHERE $where");
+    	}
+    	
+    	if($query->execute()){
+    		return true;
+    	}
+    	else{
+    		throw new Exception('Erreur dans la modification du score');
+    	}
+    	
     }
 
 }
