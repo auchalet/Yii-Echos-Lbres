@@ -173,8 +173,8 @@ class PostController extends Controller
      * @param int $id : l'ID du Post
      * @return la vue forum/posts
      */
-    public function actionVote($id_topic){
-    	 return $this->render('/forum/posts',['id_topic'=>$id_topic]);
+    public function actionVote($id, $score){
+    	 return $this->renderPartial('vote',['id'=>$id, 'score'=>$score]);
     }    
     
     
@@ -183,13 +183,13 @@ class PostController extends Controller
      * @param int $id : l'ID du Post
      * @return la vue forum/posts
      */
-    public function actionVoteup($id, $score){
+    public function actionVoteup($id){
     	$postRepo=new PostRepository();
     	$postRepo->vote('plus', "id=$id");
     	$post=$postRepo->getAll("id=$id");
     	
+    	return $this->renderPartial('vote', ['id'=>$id, 'score'=>$post[0]['score']]);
     	
-    	return $this->render('vote', ['id_topic'=>$post[0]['id_topic'],'score'=>$post[0]['score'], 'id'=>$id]);
     }
     
     /**
@@ -197,11 +197,12 @@ class PostController extends Controller
      * @param int $id : l'ID du Post
      * @return la vue forum/posts
      */
-    public function actionVotedown($id,$score){
+    public function actionVotedown($id){
     	$postRepo=new PostRepository();
     	$postRepo->vote('moins', "id=$id");
     	$post=$postRepo->getAll("id=$id");
-    	return $this->render('vote', ['id_topic'=>$post[0]['id_topic'],'id'=>$id,'score'=>$post[0]['score']]);
+    	
+    	return $this->renderPartial('vote', ['id'=>$id, 'score'=>$post[0]['score']]);
     }
 
 }

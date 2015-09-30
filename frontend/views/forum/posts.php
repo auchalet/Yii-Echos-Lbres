@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Button;
+use yii\widgets\Pjax;
+
 
 
 
@@ -21,12 +23,20 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="tab-content">
     
     <?php foreach ($posts as $attr => $val): ?>
-    
+    	
         <div class="tab-content">
+        	<strong><?= $val['id'] ?></strong>
             <i>Créé le : <?= Html::encode($val['createdAt']) ?> par </i><strong><?= $author[$attr]['username'] ?></strong><br>
             <i>Modifié le : <?= Html::encode($val['updatedAt']) ?></i>
-            
-			<?= $this->render('/post/vote', ['score'=>$val['score'], 'id'=>$val['id']]) ?>
+            			
+			<!-- Score en AJAX -->
+			
+			<?php Pjax::begin(['enablePushState' => false]); ?>
+				Votes : <?= $val['score'] ?>
+				<?= Html::a('+', ['/post/voteup','id'=>$val['id']]) ?>
+				<?= Html::a('-', ['/post/votedown','id'=>$val['id']]) ?>
+			<?php Pjax::end(); ?>
+			
             
             <?php if($val['id_user']==Yii::$app->user->id): ?>
                 <?= Html::a('Modifier', ['/post/update','id'=>$val['id']], ['class'=>'btn btn-primary']) ?>

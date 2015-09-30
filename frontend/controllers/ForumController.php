@@ -41,7 +41,9 @@ class ForumController extends \yii\web\Controller
         $topicRepo=new TopicRepository;
         $topics=$topicRepo->getAll("id_category=$id_category", ['orderBy'=>'createdAt']);
         return $this->render('topics',
-                ['topics'=>$topics]);
+                ['topics'=>$topics,
+                 'id_category'=>$id_category
+                ]);
     }    
     
     

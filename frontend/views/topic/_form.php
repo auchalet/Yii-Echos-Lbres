@@ -14,11 +14,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput() ?>
+    <?= $form->field($model, 'status')->textInput(['value'=> 0]) ?>
 
-    <?= $form->field($model, 'id_user')->textInput() ?>
+    <?= $form->field($model, 'id_user')->textInput(['value'=> $id_user]) ?>
 
-    <?= $form->field($model, 'id_category')->textInput() ?>
+    <?= $form->field($model, 'id_category')->textInput(['value'=>$id_category]) ?>
 
 
     <div class="form-group">

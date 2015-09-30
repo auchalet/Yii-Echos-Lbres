@@ -8,6 +8,7 @@ use frontend\models\ForumTopicSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\BaseUrl;
 
 /**
  * TopicController implements the CRUD actions for ForumTopic model.
@@ -58,19 +59,51 @@ class TopicController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id_category=null)
     {
         $model = new ForumTopic();
         $model->createdAt=date("Y-m-d H:i:s", time());
         $model->updatedAt=date("Y-m-d H:i:s", time());
+        
+        
+        
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+            	'id_category'=> $id_category
             ]);
         }
     }
+    
+    
+    /**
+     * Creates a new ForumTopic model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionNew($id_category)
+    {
+    	$model = new ForumTopic();
+    	$model->createdAt=date("Y-m-d H:i:s", time());
+    	$model->updatedAt=date("Y-m-d H:i:s", time());
+    
+    
+    
+    
+    	if ($model->load(Yii::$app->request->post()) && $model->save()) {
+    		return $this->redirect(['/forum/topics', 'id_category' => $model->id_category]);
+    	} else {
+    		return $this->render('new', [
+    				'model' => $model,
+    				'id_category'=> $id_category
+    		]);
+    	}
+    }
+    
+    
 
     /**
      * Updates an existing ForumTopic model.

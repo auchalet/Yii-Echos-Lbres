@@ -2,9 +2,9 @@
 	use yii\widgets\Pjax;
 	use yii\helpers\Html;
 ?>
-<?= $id ?> et <?= $score ?>
-<?php Pjax::begin(); ?>
+<?php Pjax::begin(['enablePushState' => false]); ?>
+	ID : <?= $id ?>
 	Votes : <?= $score ?>
-	<?= Html::a('+', ['/post/voteup','id'=>$id, 'score'=>$score]) ?>
-	<?= Html::a('-', ['/post/votedown','id'=>$id, 'score'=>$score]) ?>
+	<?= Html::a('+', ['/post/voteup','id'=>$id]) ?>
+	<?= Html::a('-', ['/post/votedown','id'=>$id]) ?>
 <?php Pjax::end(); ?>
