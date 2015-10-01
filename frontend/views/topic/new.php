@@ -14,10 +14,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
+    <?= $this->render('_new', [
         'model' => $model,
-    	'id_user'=> Yii::$app->user->id,
-    	'id_category' => $id_category
+    	'post' => $post
     ]) ?>
+    
 
 </div>

@@ -160,7 +160,6 @@ class PostController extends Controller
         
         //Affichage du formulaire de reponse
         return $this->render('answer', [
-                    'id_topic' => $id_topic,
                     'model' => $model
         ]);
     }

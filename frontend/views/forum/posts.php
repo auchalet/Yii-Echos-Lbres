@@ -56,6 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <br>
         <br>
     <?= Html::a('Répondre au topic', ['/post/answer','id_topic'=>$val['id_topic']], ['class'=>'btn btn-primary']) ?>
+    <?= Html::a('Retour aux topics', ['topics','id_category'=>$topic[0]['id_category']], ['class'=>'btn btn-primary']) ?>
 
     <?php endif; ?>    
     

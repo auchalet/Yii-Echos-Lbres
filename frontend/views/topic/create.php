@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="forum-topic-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
-	<p><?= $id_category ?></p>
     <?= $this->render('_form', [
         'model' => $model,
     	'id_user'=> Yii::$app->user->id,
