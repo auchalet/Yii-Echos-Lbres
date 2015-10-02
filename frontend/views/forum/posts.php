@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\bootstrap\Button;
 use yii\widgets\Pjax;
+use yii\widgets\LinkPager;
 
 
 
@@ -53,11 +54,20 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <?php endforeach; ?>
     <?php if(!Yii::$app->user->isGuest): ?>
-        <br>
-        <br>
+
     <?= Html::a('Répondre au topic', ['/post/answer','id_topic'=>$val['id_topic']], ['class'=>'btn btn-primary']) ?>
     <?= Html::a('Retour aux topics', ['topics','id_category'=>$topic[0]['id_category']], ['class'=>'btn btn-primary']) ?>
 
-    <?php endif; ?>    
+    <?php endif; ?>
+    
+
     
 </div>
+<div class="tab-content">
+    <?php 
+    echo LinkPager::widget([
+    	'pagination' => $pages,
+	]);    
+    ?>
+</div>
+

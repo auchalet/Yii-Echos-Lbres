@@ -9,6 +9,7 @@ use Yii;
 use yii\db\Query;
 use yii\db\Connection;
 use yii\db\Command;
+use yii\base\Object;
  
 
 /*
@@ -33,6 +34,23 @@ class PostRepository extends Repository {
                 throw new Exception('Erreur : la clause Where doit être une chaîne de caractères');
             }
         }
+        
+        if($params!=null){
+        	foreach ($params as $k=>$v){
+
+        		if($k=='orderBy'){
+        			$query->orderBy=$v;
+        		}
+        		if($k=='limit'){
+        			$query->limit=intval($v);
+        		}
+        		if($k=='offset'){
+        			$query->offset=intval($v);
+        		}
+        	}
+        }
+
+        //var_dump($query);
         $items=$query->all();
         
         return $items;
@@ -88,6 +106,21 @@ class PostRepository extends Repository {
     	else{
     		throw new Exception('Erreur dans la modification du score');
     	}
+    	
+    }
+    
+    /**
+     * Compte le nombre de Posts
+     */
+    public function count($table,$where){
+    	$query=new Query;
+    	$query->select(['COUNT(*) as ctr'])
+    			->from($table)
+    			->where($where);
+    	$count=$query->all();
+    	
+    	return $count;
+
     	
     }
 

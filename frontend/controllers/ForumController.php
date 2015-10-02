@@ -11,6 +11,8 @@ use common\repository\CategoryRepository;
 use common\repository\TopicRepository;
 use frontend\models\ForumPost;
 use common\models\User;
+use yii\data\Pagination;
+use yii\base\Object;
 
 
 class ForumController extends \yii\web\Controller
@@ -54,8 +56,27 @@ class ForumController extends \yii\web\Controller
      */
     public function actionPosts($id_topic)
     {
-        $postRepo=new PostRepository;
-        $posts=$postRepo->getAll("id_topic=$id_topic", ['orderBy'=>'createdAt']);
+    	$postRepo=new PostRepository;
+    	 
+    	$countQuery=$postRepo->count('forum_post',"id_topic=$id_topic");
+    	
+    	//Pagination : 5 Items par page
+    	$pages=new Pagination([
+    			'pageSize'=>5,
+    			'totalCount'=>$countQuery[0]['ctr']
+    	]);    	
+    	
+    	//GetAll avec Pagination
+        $posts=$postRepo->getAll("id_topic=$id_topic", [
+        		'orderBy'=>[
+        				'createdAt'=>SORT_ASC
+        				],
+        		'offset'=>$pages->offset,
+        		'limit'=>$pages->limit
+        		
+        ]);
+        
+		//var_dump($pages);
         
         $topicRepo=new TopicRepository;
         $topic=$topicRepo->getAll("id=$id_topic");
@@ -67,7 +88,12 @@ class ForumController extends \yii\web\Controller
         
         
         //$author=$user->findIdentity($posts['id_user']);
-        return $this->render('posts',['topic'=>$topic, 'posts'=>$posts, 'author'=>$users]);
+        return $this->render('posts',[
+        		'topic'=>$topic, 
+        		'posts'=>$posts, 
+        		'author'=>$users,
+        		'pages'=>$pages
+        ]);
     }
     
 
