@@ -168,7 +168,7 @@ class PostController extends Controller
     /** Gestion du vote pour un Post : ne marche pas **/
     
     /**
-     * Incrémente le score du Post
+     * Incrï¿½mente le score du Post
      * @param int $id : l'ID du Post
      * @return la vue forum/posts
      */
@@ -178,25 +178,34 @@ class PostController extends Controller
     
     
     /**
-     * Incrémente le score du Post
+     * Incrï¿½mente le score du Post
      * @param int $id : l'ID du Post
      * @return la vue forum/posts
      */
-    public function actionVoteup($id){
+    public function actionVoteup($id=null){
+        
+        if($id==null && isset($_POST['id']) && !empty($_POST['id'])){
+            $id=$_POST['id'];
+        }
+        
     	$postRepo=new PostRepository();
     	$postRepo->vote('plus', "id=$id");
     	$post=$postRepo->getAll("id=$id");
     	
+        
     	return $this->renderPartial('vote', ['id'=>$id, 'score'=>$post[0]['score']]);
     	
     }
     
     /**
-     * Décrémente le score du Post
+     * Dï¿½crï¿½mente le score du Post
      * @param int $id : l'ID du Post
      * @return la vue forum/posts
      */
-    public function actionVotedown($id){
+    public function actionVotedown($id=null){
+        if($id==null && isset($_POST['id']) && !empty($_POST['id'])){
+            $id=$_POST['id'];
+        }
     	$postRepo=new PostRepository();
     	$postRepo->vote('moins', "id=$id");
     	$post=$postRepo->getAll("id=$id");

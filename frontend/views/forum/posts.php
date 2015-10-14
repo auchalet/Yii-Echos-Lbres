@@ -30,13 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
             <i>Créé le : <?= Html::encode($val['createdAt']) ?> par </i><strong><?= $author[$attr]['username'] ?></strong><br>
             <i>Modifié le : <?= Html::encode($val['updatedAt']) ?></i>
             			
-			<!-- Score en AJAX -->
-			
-			<?php Pjax::begin(['enablePushState' => false]); ?>
-				Votes : <?= $val['score'] ?>
-				<?= Html::a('+', ['/post/voteup','id'=>$val['id']]) ?>
-				<?= Html::a('-', ['/post/votedown','id'=>$val['id']]) ?>
-			<?php Pjax::end(); ?>
+            <!-- Score en AJAX -->
+            
+            <label class="badge">Votes : <span id="score_<?= $val['id'] ?>"><?= $val['score'] ?></span></label>
+            
+            <div class="btn-group">
+                <span class="btn btn-default" onclick="vote('plus_<?= $val['id'] ?>');">+</span>                     
+                <span class="btn btn-default" onclick="vote('moins_<?= $val['id'] ?>');">-</span>                     
+            </div>
+
+
 			
             
             <?php if($val['id_user']==Yii::$app->user->id): ?>
@@ -70,4 +73,39 @@ $this->params['breadcrumbs'][] = $this->title;
 	]);    
     ?>
 </div>
-
+<?php
+    $this->registerJs("
+        function vote(type_id){
+        var tab=type_id.split('_');
+        var type=tab[0];
+        var id=tab[1];
+        var score_html=$('#score_'+id).html();
+        var score=parseInt(score_html);
+        
+        if(type=='plus'){
+            console.log(id);
+            $.post('/post/voteup',{
+                id: id
+            })
+            .success(function(data){
+                $('#score_'+id).html(score+1);        
+            })
+            .fail(function(){
+                console.log('Echec Ajax');
+            });
+        }
+        
+        if(type=='moins'){
+            console.log('moins');
+            $.post('/post/votedown',{
+                id: id
+            })
+            .success(function(data){
+                $('#score_'+id).html(score-1);        
+            })
+            .fail(function(){
+                console.log('Echec Ajax');
+            });
+        }
+    }",\yii\web\View::POS_END); 
+?>
