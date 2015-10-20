@@ -133,7 +133,6 @@ class PostController extends Controller
      * @return vue 
      */
     public function actionAnswer($id_topic) {
-
         $model = new ForumPost();
         $model->title=NULL;
         $model->id_topic=intval($id_topic);
@@ -147,7 +146,7 @@ class PostController extends Controller
         if(isset($post)&&!empty($post)){
             $postRepo=new PostRepository();
             $model->title=NULL;
-            
+           
             $model->content=$post['content'];
             if($postRepo->insert($model)){
                 return $this->redirect(['/forum/posts', 'id_topic' => $model->id_topic]);
@@ -160,8 +159,9 @@ class PostController extends Controller
         
         //Affichage du formulaire de reponse
         return $this->render('answer', [
-                    'model' => $model
-        ]);
+                    'model' => $model,
+                    'id_topic'=>$id_topic
+       ]);
     }
     
    
@@ -209,6 +209,10 @@ class PostController extends Controller
     	$postRepo=new PostRepository();
     	$postRepo->vote('moins', "id=$id");
     	$post=$postRepo->getAll("id=$id");
+        
+        /**
+         * TODO : Si $post->score < 10, envoie un mail à echos-libres@protonmail.com
+         */
     	
     	return $this->renderPartial('vote', ['id'=>$id, 'score'=>$post[0]['score']]);
     }

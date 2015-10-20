@@ -39,7 +39,7 @@ class ForumCategory extends \yii\db\ActiveRecord
         return [
             [['title', 'description', 'status', 'id_user', 'createdAt', 'updatedAt'], 'required'],
             [['status'], 'number'],
-            [['id_user'], 'integer'],
+            [['id_user', 'id_category'], 'integer'],
             [['createdAt', 'updatedAt'], 'safe'],
             [['meta_title', 'meta_description', 'meta_keyword'], 'string'],
             [['title'], 'string', 'max' => 100],
@@ -58,6 +58,7 @@ class ForumCategory extends \yii\db\ActiveRecord
             'description' => 'Description',
             'status' => 'Status',
             'id_user' => 'Id User',
+            'id_category' => 'Theme',
             'createdAt' => 'Created At',
             'updatedAt' => 'Updated At',
             'meta_title' => 'Meta Title',

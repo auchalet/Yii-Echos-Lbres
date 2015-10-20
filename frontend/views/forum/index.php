@@ -11,6 +11,7 @@ use yii\helpers\Url;
 
 $this->title = 'Forum - Index';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <h1>Index du forum</h1>
 
@@ -18,16 +19,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="tab-content">
     
-    <?php 
-        
-    foreach ($categories as $k => $v): ?>
+    <!-- Affichage du nom de la thématique -->
+    <?php foreach($themes as $k=>$val): ?>  
     
+    <h3><?= $val['title'] ?></h3>
+    
+    <!-- Pour chaque thème, affichage des catégories correspondantes -->
+    <?php foreach ($categories as $k => $v): ?>
+    
+    <?php if($v['id_category']==$val['id']): ?>
     
     <a href='<?= Url::to(['forum/topics', 'id_category'=>$v['id'] ]); ?>'><?= Html::encode($v['title']) ?></a>
     <br>
     <?= Html::encode($v['description']) ?>
     <br><br><br>
-
-    <?php endforeach; ?>
+    
+    <?php endif;
+    endforeach;
+    endforeach; ?>
 
 </div>

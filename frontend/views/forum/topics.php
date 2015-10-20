@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <h2>Topics associés</h2>
 
-<?= Html::a('Creer un topic', ['/topic/new', 'id_category'=>$id_category], ['class'=>'btn']) ?>
+<p class="text-ri"><a href="<?= Url::to(['/topic/new', 'id_category'=>$id_category]) ?>">Créer un nouveau sujet</a></p>
 
 
 <div class="tab-content">

@@ -17,6 +17,8 @@ use yii\widgets\LinkPager;
 
 $this->title = 'Categorie';
 $this->params['breadcrumbs'][] = $this->title;
+$id_topic=$this->context->actionParams['id_topic'];
+
 ?>
 <h1>Topic : <?= $topic[0]['title'] ?></h1>
 
@@ -43,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			
             
             <?php if($val['id_user']==Yii::$app->user->id): ?>
-                <?= Html::a('Modifier', ['/post/update','id'=>$val['id']], ['class'=>'btn btn-primary']) ?>
+            <a class="btn btn-primary" href="<?= Url::to(['/post/update', 'id'=>$val['id']]) ?>">Modifier</a>
             <?php endif; ?>
 
         </div>
@@ -58,8 +60,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php endforeach; ?>
     <?php if(!Yii::$app->user->isGuest): ?>
 
-    <?= Html::a('Répondre au topic', ['/post/answer','id_topic'=>$val['id_topic']], ['class'=>'btn btn-primary']) ?>
-    <?= Html::a('Retour aux topics', ['topics','id_category'=>$topic[0]['id_category']], ['class'=>'btn btn-primary']) ?>
+        <a class="btn btn-primary" href="<?= Url::to(['/post/answer', 'id_topic'=>$id_topic]) ?>">Répondre au topic</a>
+        <a class="btn btn-primary" href="<?= Url::to(['topics','id_category'=>$topic[0]['id_category']]) ?>">'Retour aux topics</a>
 
     <?php endif; ?>
     

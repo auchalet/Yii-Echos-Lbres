@@ -25,10 +25,12 @@ class ForumController extends \yii\web\Controller
     public function actionIndex()
     {
         $categoryRepo=new CategoryRepository();
-        $categories=$categoryRepo->getAll();
-                
+        $categories=$categoryRepo->getAll('id_category IS NOT NULL');
+        $themes=$categoryRepo->getThemes();
+   
         return $this->render('index', [
-            'categories'=>$categories
+            'categories'=>$categories,
+            'themes'=>$themes
         ]);
     }
 

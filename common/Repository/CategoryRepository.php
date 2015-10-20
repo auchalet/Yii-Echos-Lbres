@@ -44,4 +44,20 @@ class CategoryRepository extends Repository {
         return $items;
         
     }
+    
+    public function getThemes($params=null){
+        $query=new Query;
+        $query->select('id, title, description, status, id_category')
+                ->from('forum_category')
+                ->where(['id_category' => NULL]);
+                
+ 
+        
+        $items=$query->all();
+        if($items!=null){
+            return $items;
+        }
+
+        
+    }
 }

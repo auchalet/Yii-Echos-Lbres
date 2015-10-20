@@ -19,6 +19,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'status')->textInput() ?>
 
     <?= $form->field($model, 'id_user')->textInput() ?>
+    
+    <?= $form->field($model, 'id_category')->textInput() ?>
 
 
     <div class="form-group">

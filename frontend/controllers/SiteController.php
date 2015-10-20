@@ -151,9 +151,10 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
+                /**
+                 * TODO : Envoyer un mail à l'User avec clé d'activation $user->auth_key
+                 */
                     return $this->goHome();
-                }
             }
         }
 
@@ -209,5 +210,16 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+    
+    /**
+     * Action appellée lorsque l'user clique sur le lien
+     * TODO : Rewrite : /confirm => site/confirm-signup
+     */
+    public function actionConfirmSignup($auth_key){
+        /**
+         * TODO : Si $auth_key est trouvée dans la table user, passe le statut de l'user à User::STATUS_ACTIVE
+         * TODO : Redirection sur la home avec l'user en param -> Affiche un div avec "Votre compte est activé"
+         */
     }
 }

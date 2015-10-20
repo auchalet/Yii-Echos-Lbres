@@ -61,7 +61,7 @@ class ForumCategorySearch extends ForumCategory
             'status' => $this->status,
             'id_user' => $this->id_user,
             'createdAt' => $this->createdAt,
-            'updatedAt' => $this->updatedAt,
+            'updatedAt' => $this->updatedAt,            
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
