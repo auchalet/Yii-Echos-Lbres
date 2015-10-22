@@ -17,6 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <h2>Categories</h2>
 
+<?php if(!Yii::$app->user->isGuest): ?>
+
+<a class="btn-primary btn" href="<?= Url::to(['/category/create']); ?>">Créer une nouvelle catégorie</a>
+
+<?php endif; ?>
+
 <div class="tab-content">
     
     <!-- Affichage du nom de la thématique -->

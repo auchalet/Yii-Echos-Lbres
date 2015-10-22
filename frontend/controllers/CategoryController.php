@@ -8,6 +8,8 @@ use frontend\models\ForumCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\repository\CategoryRepository;
+
 
 /**
  * CategoryController implements the CRUD actions for ForumCategory model.
@@ -63,12 +65,17 @@ class CategoryController extends Controller
         $model = new ForumCategory();
         $model->createdAt=date("Y-m-d H:i:s", time());
         $model->updatedAt=date("Y-m-d H:i:s", time());
+        $model->id_user=Yii::$app->user->id;
+        
+        $categoryRepo=new CategoryRepository;
+        $themes=$categoryRepo->getThemes();
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['/forum/index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'themes' => $themes
             ]);
         }
     }
