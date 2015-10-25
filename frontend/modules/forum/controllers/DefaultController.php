@@ -5,7 +5,7 @@
  * Fonctions pour gérer l'objet forum
  */
 
-namespace frontend\controllers;
+namespace frontend\modules\forum\controllers;
 use common\repository\PostRepository;
 use common\repository\CategoryRepository;
 use common\repository\TopicRepository;
@@ -15,7 +15,7 @@ use yii\data\Pagination;
 use yii\base\Object;
 
 
-class ForumController extends \yii\web\Controller
+class DefaultController extends \yii\web\Controller
 {
     public function actionCategory()
     {

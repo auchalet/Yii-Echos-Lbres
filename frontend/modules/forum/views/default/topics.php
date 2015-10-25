@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <?php foreach ($topics as $attr => $val): ?>
     
-        <a href='<?= Url::to(['forum/posts', 'id_topic'=>$val['id']]); ?>'><?= Html::encode($val['title']) ?></a>
+        <a href='<?= Url::to(['posts', 'id_topic'=>$val['id']]); ?>'><?= Html::encode($val['title']) ?></a>
         <br>
         <i>Cree le : <?= Html::encode($val['createdAt']) ?></i>
         <br>

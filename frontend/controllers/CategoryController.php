@@ -71,7 +71,7 @@ class CategoryController extends Controller
         $themes=$categoryRepo->getThemes();
         
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['/forum/index']);
+            return $this->redirect(['/forum/default/index']);
         } else {
             return $this->render('create', [
                 'model' => $model,

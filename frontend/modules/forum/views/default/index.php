@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <?php if($v['id_category']==$val['id']): ?>
     
-    <a href='<?= Url::to(['forum/topics', 'id_category'=>$v['id'] ]); ?>'><?= Html::encode($v['title']) ?></a>
+    <a href='<?= Url::to(['topics', 'id_category'=>$v['id'] ]); ?>'><?= Html::encode($v['title']) ?></a>
     <br>
     <?= Html::encode($v['description']) ?>
     <br><br><br>

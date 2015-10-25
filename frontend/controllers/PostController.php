@@ -86,7 +86,7 @@ class PostController extends Controller
         $model->updatedAt=date("Y-m-d H:i:s", time());
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['forum/posts', 'id_topic' => $model->id_topic]);
+            return $this->redirect(['/forum/default/posts', 'id_topic' => $model->id_topic]);
         } else {
             
             
@@ -149,7 +149,7 @@ class PostController extends Controller
            
             $model->content=$post['content'];
             if($postRepo->insert($model)){
-                return $this->redirect(['/forum/posts', 'id_topic' => $model->id_topic]);
+                return $this->redirect(['/forum/default/posts', 'id_topic' => $model->id_topic]);
             }    
 
 

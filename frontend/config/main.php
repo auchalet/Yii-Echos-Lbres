@@ -11,13 +11,18 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'forum' => [
+            'class' => 'frontend\modules\forum\Forum',
+        ],
+    ],
     'components' => [
         'urlManager' => [
             'showScriptName' => false,
             'enablePrettyUrl' => true,
             'rules' => [
-                'forum/topic/<id_topic:\d+>/posts' => 'forum/posts',
-                'forum/category/<id_category:\d+>/topics' => 'forum/topics'
+                'forum/topic/<id_topic:\d+>/posts' => 'forum/default/posts',
+                'forum/category/<id_category:\d+>/topics' => 'forum/default/topics'
             ]
         ],        
         'user' => [

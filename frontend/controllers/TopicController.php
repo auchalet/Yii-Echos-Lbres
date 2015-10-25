@@ -91,7 +91,7 @@ class TopicController extends Controller
      */
     public function actionNew($id_category)
     {
-    	//Création du Topic
+    	//Crï¿½ation du Topic
     	$topic = new ForumTopic();
     	$topic->createdAt=date("Y-m-d H:i:s", time());
     	$topic->updatedAt=date("Y-m-d H:i:s", time());
@@ -107,7 +107,7 @@ class TopicController extends Controller
     	//Test remplissage du formulaire
     	if ($topic->load(Yii::$app->request->post()) && $post->load(Yii::$app->request->post())) {
     		
-    		//Création du premier Post du topic
+    		//Crï¿½ation du premier Post du topic
     		$post->title=$topic->title;
     		$post->score=0;
     		$post->createdAt=date("Y-m-d H:i:s", time());
@@ -123,7 +123,7 @@ class TopicController extends Controller
     			
     			if($post->save()){
     				
-    				return $this->redirect(['/forum/posts', 'id_topic' => $topic->id]);
+    				return $this->redirect(['/forum/default/posts', 'id_topic' => $topic->id]);
     			}
     			
     		}
