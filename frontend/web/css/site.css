@@ -89,3 +89,21 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+#header-profil{
+    background-image:linear-gradient(to right, #00cc00, white); 
+    min-height:130px; 
+    border-bottom: 5px; 
+    border-style: solid; 
+    margin-bottom: 20px;    
+}
+
+#userSiteAttributes{
+    float:right; 
+    margin-right: 20px;    
+}
+
+#avatar{
+    float:right;
+    margin-left: 10px;
+}

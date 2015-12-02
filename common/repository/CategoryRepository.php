@@ -27,7 +27,7 @@ class CategoryRepository extends Repository {
     public function getAll($where=null, $params=null){
         $query=new Query;
         $query->select('*')
-                ->from('forum_category');
+              ->from('forum_category');
         //var_dump($where);
         if($where!=null){
             if(is_string($where)){
