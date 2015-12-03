@@ -193,12 +193,12 @@ class User extends ActiveRecord implements IdentityInterface
     
     public function findMember()
     {
-        return $this->hasOne(Member::classname(), ['user_id' => 'id']);
+        return $this->hasOne(Member::classname(), ['user_id' => 'id'])->one();
     }
     
     public function findAccount()
     {
-        return $this->hasOne(Account::classname(), ['user_id' => 'id']);
+        return $this->hasOne(Account::classname(), ['user_id' => 'id'])->one();
     }
     
     

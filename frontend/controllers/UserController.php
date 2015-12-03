@@ -12,11 +12,10 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use common\repository\AccountRepository;
-use common\repository\MemberRepository;
 use frontend\models\Member;
+use frontend\models\Account;
 use common\models\User;
-use frontend\models\UpdateLogsForm;
+use frontend\models\UpdateUserForm;
 
 class UserController extends \yii\web\Controller
 {
@@ -24,8 +23,8 @@ class UserController extends \yii\web\Controller
     {
         $user = Yii::$app->user->identity;
         
-        $accountUser = $user->findAccount()->one();        
-        $memberUser = $user->findMember()->one();
+        $accountUser = $user->findAccount();        
+        $memberUser = $user->findMember();
         
         //var_dump($accountUser, $memberUser); die;
         
@@ -45,7 +44,7 @@ class UserController extends \yii\web\Controller
      */
     public function actionUpdateLogs($id_user = null)
     {
-        $model = new UpdateLogsForm;
+        $model = new UpdateUserForm;
         
         if($id_user) {
             $user = User::findIdentity($id_user);
@@ -54,19 +53,20 @@ class UserController extends \yii\web\Controller
             $user = Yii::$app->user->identity;
         }
         
+        
         if($model->load(Yii::$app->request->post()) && $model->validate()){
             
             if($model->updateLogs($user)){
                 
                 Yii::$app->getSession()->setFlash(
-                    'success','Password changed'
+                    'success','Modification réussie'
                 );
 
-                return $this->redirect('index');
+                return $this->redirect(['index']);
             }
         }
         else {
-            return $this->render('update-logs', [
+            return $this->render('update-user', [
                 'model' => $model,
                 'user' => $user
             ]);
@@ -74,9 +74,27 @@ class UserController extends \yii\web\Controller
         
     }
     
-    public function actionUpdateAccount()
+    public function actionUpdateAccount($id_user = null)
     {
-        var_dump('Update account');
+        $model = new Account;
+        
+        if($id_user) {
+            $account = User::findIdentity($id_user)->findAccount();
+            //var_dump($user->username);die;
+        } else {
+            $account = Yii::$app->session->get('account');
+        }    
+       
+        if($model->load(Yii::$app->request->post() && $model->validate())) {
+            
+        }
+        else {
+            return $this->render('update-account', [
+                'model' => $model,
+                'account' => $account
+            ]);
+        }
+        
     }
     
     

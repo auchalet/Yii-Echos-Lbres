@@ -1,7 +1,14 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
+
+
+/* @var $this yii\web\View */
+$this->title = 'Modification des identifiants';
+$this->params['breadcrumbs'][] = ['label' => Yii::$app->session->get('account')->pseudo.' - Profil', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\UpdateLogsForm */

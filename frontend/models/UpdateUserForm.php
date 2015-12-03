@@ -15,7 +15,7 @@ use yii;
  *
  * @author didou
  */
-class UpdateLogsForm extends Model 
+class UpdateUserForm extends Model 
 {
     public $username;
     public $password;
@@ -36,8 +36,7 @@ class UpdateLogsForm extends Model
     public function updateLogs($user)
     {
         // NE PAS DECRYPTER UN MDP // COMPARER VALEUR DU HASH //
-        
-        //echo "<pre>";var_dump($user);echo "</pre>";
+        //echo "<pre>";var_dump($this);echo "</pre>";
         //var_dump($user->password_hash);
         //var_dump(crypt('didoujah', $user->password_hash));die;
         //var_dump(Yii::$app->getSecurity()->decryptByPassword($user->password_hash, '$2y$13$'));
@@ -51,9 +50,16 @@ class UpdateLogsForm extends Model
                 $user->email = $this->email;
             }
             
+            if($this->password === $this->password_repeat) {
+                // generates the hash (usually done during user registration or when the password is changed)
+                $hash = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+                
+                if(Yii::$app->getSecurity()->validatePassword($this->password, $hash)) {
+                    $user->password_hash = $hash;
+                }
+            }
             
             
-            exit;
             if($user->save()) {
                 return true;
             }

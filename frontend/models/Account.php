@@ -41,7 +41,7 @@ class Account extends \yii\db\ActiveRecord
     {
         return [
             [['pseudo', 'user_id'], 'required'],
-            [['age'], 'safe'],
+            [['age'], 'integer'],
             [['favorite_category', 'newsletter', 'user_id'], 'integer'],
             [['past', 'present', 'future', 'why_register', 'skills', 'interests', 'other'], 'string'],
             [['pseudo', 'sex'], 'string', 'max' => 128]
@@ -57,16 +57,16 @@ class Account extends \yii\db\ActiveRecord
             'id_account' => 'Id Account',
             'pseudo' => 'Pseudo',
             'sex' => 'Sex',
-            'age' => 'Age',
-            'favorite_category' => 'Favorite Category',
-            'past' => 'Past',
-            'present' => 'Present',
-            'future' => 'Future',
-            'why_register' => 'Why Register',
-            'skills' => 'Skills',
-            'interests' => 'Interests',
-            'other' => 'Other',
-            'newsletter' => 'Newsletter',
+            'age' => 'Age virtuel',
+            'favorite_category' => 'Rubrique favorite',
+            'past' => 'Passé',
+            'present' => 'Présent',
+            'future' => 'Futur',
+            'why_register' => 'Pourquoi suis-je inscrit ?',
+            'skills' => 'Savoir et compétences',
+            'interests' => 'Centre d\'intérêt',
+            'other' => 'Expression Libre',
+            'newsletter' => 'Inscription newsletter',
             'user_id' => 'User ID',
         ];
     }
