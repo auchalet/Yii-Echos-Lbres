@@ -16,6 +16,7 @@ use common\repository\AccountRepository;
 use common\repository\MemberRepository;
 use frontend\models\Member;
 use common\models\User;
+use frontend\models\UpdateLogsForm;
 
 class UserController extends \yii\web\Controller
 {
@@ -37,9 +38,40 @@ class UserController extends \yii\web\Controller
     }
     
     
-    public function actionUpdateLogs()
+    /**
+     * Modifie les informations d'identification de l'User en cours, ou de l'User $id_user
+     * @param int $id_user
+     * @return type
+     */
+    public function actionUpdateLogs($id_user = null)
     {
-        var_dump('Update logs');
+        $model = new UpdateLogsForm;
+        
+        if($id_user) {
+            $user = User::findIdentity($id_user);
+            //var_dump($user->username);die;
+        } else {
+            $user = Yii::$app->user->identity;
+        }
+        
+        if($model->load(Yii::$app->request->post()) && $model->validate()){
+            
+            if($model->updateLogs($user)){
+                
+                Yii::$app->getSession()->setFlash(
+                    'success','Password changed'
+                );
+
+                return $this->redirect('index');
+            }
+        }
+        else {
+            return $this->render('update-logs', [
+                'model' => $model,
+                'user' => $user
+            ]);
+        }
+        
     }
     
     public function actionUpdateAccount()

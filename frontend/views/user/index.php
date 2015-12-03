@@ -4,19 +4,27 @@ use yii\helpers\Url;
 
 
 /* @var $this yii\web\View */
-
+$this->title = 'Echos-Libres - Profil de '.$account->pseudo;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div id="header-profil">
     <div class="" style="float:left;">
         <h1>Profil : <?= $account->pseudo ?></h1>
+        <ul>
+            <li>Inscrit sur le site depuis le <?= Yii::$app->formatter->asDate($user->created_at); ?> </li>
+            
+            <?php if($member->paid === 1): ?>
+            <li>Membre de l'asso depuis le <?= Yii::$app->formatter->asDate($member->adhesion); ?> </li>
+            <?php endif; ?>
+            
+        </ul>
     </div>
     
     <div id="userSiteAttributes">
         <ul class="" style="display:inline;">            
             <li>Login : <?= $user->username ?></li>
-            <li>Password : ********</li>
-            <li>Membre depuis le <?= Yii::$app->formatter->asDate($user->created_at); ?> </li>
+            <li>Password : ********</li>           
             <li><a href="<?= Url::to(['user/update-logs']) ?>">Modifier</a>
         </ul>
     </div>

@@ -52,11 +52,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            ['email', 'email'],
             ['status', 'default', 'value' => self::STATUS_DELETED],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -198,4 +200,6 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(Account::classname(), ['user_id' => 'id']);
     }
+    
+    
 }
