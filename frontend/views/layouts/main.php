@@ -45,7 +45,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = [
-            'label' => Yii::$app->session->get('account')->pseudo,
+            'label' => 'Pseudo',
             'items' => [ 
                 ['label' => 'Déconnexion', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
                 ['label' => 'Profil', 'url' => ['/user/index']]
