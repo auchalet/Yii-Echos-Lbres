@@ -6,6 +6,8 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use frontend\models\Account;
+use frontend\models\Member;
 
 /**
  * User model
@@ -50,11 +52,13 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            ['email', 'email'],
             ['status', 'default', 'value' => self::STATUS_DELETED],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            
         ];
     }
-
+    
     /**
      * @inheritdoc
      */
@@ -185,4 +189,17 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
+    
+    
+    public function findMember()
+    {
+        return $this->hasOne(Member::classname(), ['user_id' => 'id'])->one();
+    }
+    
+    public function findAccount()
+    {
+        return $this->hasOne(Account::classname(), ['user_id' => 'id'])->one();
+    }
+    
+    
 }

@@ -154,7 +154,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 /**
-                 * TODO : Envoyer un mail à l'User avec clé d'activation $user->auth_key
+                 * TODO : Envoyer un mail à l'User avec clé d'activation $user->auth_key (à faire dans SignupForm.php)
                  */
                     return $this->goHome();
             }
