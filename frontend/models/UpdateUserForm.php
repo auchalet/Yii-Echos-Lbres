@@ -25,7 +25,7 @@ class UpdateUserForm extends Model
     public function rules()
     {
         return [
-            [['username', 'password', 'password_repeat'], 'required'],
+            [['username', 'email'], 'required'],
             ['email', 'email'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password', 'operator' => '=='],
             
