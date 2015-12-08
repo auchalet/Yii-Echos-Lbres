@@ -10,6 +10,9 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
+$cookie = Yii::$app->request->cookies;
+//var_dump($cookie->get('account')->value->pseudo);die;
+
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -45,7 +48,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = [
-            'label' => 'Pseudo',
+            'label' => (isset($cookie))?$cookie->get('account')->value->pseudo:'Pseudo',
             'items' => [ 
                 ['label' => 'Déconnexion', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
                 ['label' => 'Profil', 'url' => ['/user/index']]

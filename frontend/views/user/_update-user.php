@@ -4,10 +4,12 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
+// get the cookie collection (yii\web\CookieCollection) from the "request" component
+$cookie = Yii::$app->request->cookies;
 
 /* @var $this yii\web\View */
 $this->title = 'Modification des identifiants';
-$this->params['breadcrumbs'][] = ['label' => Yii::$app->session->get('account')->pseudo.' - Profil', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => (isset($cookie))?$cookie->get('account')->value->pseudo.' - Profil':'Pseudo - Profil', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 /* @var $this yii\web\View */

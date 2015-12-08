@@ -82,7 +82,10 @@ class UserController extends \yii\web\Controller
             $account = User::findIdentity($id_user)->findAccount();
             //var_dump($user->username);die;
         } else {
-            $account = Yii::$app->session->get('account');
+            $cookie = Yii::$app->request->cookies;
+            if($cookie->get('account')->value != NULL) {
+                $account = $cookie->get('account')->value;
+            }
         }    
        
         if($model->load(Yii::$app->request->post() && $model->validate())) {

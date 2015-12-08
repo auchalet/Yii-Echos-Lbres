@@ -61,14 +61,29 @@ class LoginForm extends Model
             $account = $user->findAccount();
             $member = $user->findMember();
             
+            $cookie = Yii::$app->response->cookies;
+
+            
             if($member != null){
-                Yii::$app->session->set('member', $member);
+                $cookie->add(new \yii\web\Cookie([
+                    'name' => 'member',
+                    'value' => $member
+                ]));
             }
             
 
-            Yii::$app->session->set('user', $user);
-            Yii::$app->session->set('account', $account);
+            $cookie->add(new \yii\web\Cookie([
+                'name' => 'user',
+                'value' => $user
+            ]));
+
+            $cookie->add(new \yii\web\Cookie([
+                'name' => 'account',
+                'value' => $account
+            ])); 
             
+           //var_dump($cookie);die;
+                
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;
