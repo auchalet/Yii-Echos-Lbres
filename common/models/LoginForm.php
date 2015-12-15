@@ -65,23 +65,15 @@ class LoginForm extends Model
 
             
             if($member != null){
-                $cookie->add(new \yii\web\Cookie([
-                    'name' => 'member',
-                    'value' => $member
-                ]));
+               Yii::$app->session->set('member', $member); 
+            }
+            if($account != null){
+                Yii::$app->session->set('account', $acount); 
             }
             
 
-            $cookie->add(new \yii\web\Cookie([
-                'name' => 'user',
-                'value' => $user
-            ]));
 
-            $cookie->add(new \yii\web\Cookie([
-                'name' => 'account',
-                'value' => $account
-            ])); 
-            
+ 
            //var_dump($cookie);die;
                 
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);

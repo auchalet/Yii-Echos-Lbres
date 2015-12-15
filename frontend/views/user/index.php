@@ -36,7 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
     
     
     <div id="avatar" style="border-style:solid;">
-        <?= Html::img('@web/upload/defaut.jpg'); ?>
+        <?= Html::img('/uploads/defaut.jpg'); ?>
+
         <br>
         <a href="<?= Url::to(['user/change-avatar']) ?>">Ajouter un avatar (compatible Gravatar)</a>
     </div>

@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 use common\models\LoginForm;
+use common\models\UploadForm;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
@@ -16,6 +17,7 @@ use frontend\models\Member;
 use frontend\models\Account;
 use common\models\User;
 use frontend\models\UpdateUserForm;
+use yii\web\UploadedFile;
 
 class UserController extends \yii\web\Controller
 {
@@ -82,9 +84,8 @@ class UserController extends \yii\web\Controller
             $account = User::findIdentity($id_user)->findAccount();
             //var_dump($user->username);die;
         } else {
-            $cookie = Yii::$app->request->cookies;
-            if($cookie->get('account')->value != NULL) {
-                $account = $cookie->get('account')->value;
+            if(Yii::$app->session->get('account') == null){
+                Yii::$app->session->set('account', Yii::$app->user->findAccount()); 
             }
         }    
        
@@ -115,7 +116,31 @@ class UserController extends \yii\web\Controller
     
     public function actionChangeAvatar()
     {
+        $model = new UploadForm();
         
+        //Récupération du dossier frontend/web/uploads/sha1(login)/
+        $user = Yii::$app->user->identity;
+        $hash = sha1($user->username);
+
+        $path = 'uploads/'.$hash;
+        
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload($path)) {
+                // file is uploaded successfully
+                Yii::$app->getSession()->setFlash(
+                    'success','Avatar changé'
+                );                
+                return $this->redirect(['index']);
+            }
+            else {
+                echo "Echec de l'upload";
+            }
+        }
+
+        return $this->render('/tools/upload', [
+            'model' => $model,
+                ]);
     }
 
 }

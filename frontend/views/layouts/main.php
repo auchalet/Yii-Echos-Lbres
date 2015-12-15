@@ -10,8 +10,17 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
-$cookie = Yii::$app->request->cookies;
-//var_dump($cookie->get('account')->value->pseudo);die;
+
+if (!Yii::$app->user->isGuest ) {
+    if(Yii::$app->session->get('account') == null){
+        Yii::$app->session->set('account', Yii::$app->user->identity->findAccount()); 
+    }
+    if(Yii::$app->session->get('member') == null && Yii::$app->user->identity->findAccount()!=NULL){
+        Yii::$app->session->set('member', Yii::$app->user->identity->findAccount()); 
+    }
+}
+
+
 
 AppAsset::register($this);
 ?>
@@ -48,7 +57,7 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
         $menuItems[] = [
-            'label' => (isset($cookie))?$cookie->get('account')->value->pseudo:'Pseudo',
+            'label' => Yii::$app->session->get('account')->pseudo,
             'items' => [ 
                 ['label' => 'Déconnexion', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
                 ['label' => 'Profil', 'url' => ['/user/index']]
