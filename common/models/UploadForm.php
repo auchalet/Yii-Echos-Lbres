@@ -23,8 +23,22 @@ class UploadForm extends Model
     public function upload($path)
     {
         if ($this->validate()) {
-            FileHelper::createDirectory ( $path, $mode = 509, $recursive = true );
-            $this->imageFile->saveAs( $path . '/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+            
+            try {
+                FileHelper::createDirectory ( $path, $mode = 509, $recursive = true );
+                $this->imageFile->saveAs( $path . '/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+                
+                //Ajouter nouvel UploadFile() dans la BD -- Manque plus qu'à save
+                $file = new UploadFile;
+                               
+                $file->addFile($this->imageFile);
+                
+                    
+            } catch (Exception $ex) {
+                echo "Exception upload_file : ".$ex->getMessage();
+            }
+
+            
             return true;
         } else {
             return false;

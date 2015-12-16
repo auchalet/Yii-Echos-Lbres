@@ -18,16 +18,21 @@ use frontend\models\Account;
 use common\models\User;
 use frontend\models\UpdateUserForm;
 use yii\web\UploadedFile;
+use common\models\UploadFile;
 
 class UserController extends \yii\web\Controller
 {
-    public function actionIndex()
+    public function actionIndex($id_user = null)
     {
-        $user = Yii::$app->user->identity;
-        
-        $accountUser = $user->findAccount();        
-        $memberUser = $user->findMember();
-        
+        if($id_user == NULL) {
+            $user = Yii::$app->user->identity;
+        }
+        else {
+            $user = User::findIdentity($id_user);
+        }
+
+        $accountUser = $user->findAccount();
+        $memberUser = $user->findMember();        
         //var_dump($accountUser, $memberUser); die;
         
         
@@ -50,8 +55,8 @@ class UserController extends \yii\web\Controller
         
         if($id_user) {
             $user = User::findIdentity($id_user);
-            //var_dump($user->username);die;
-        } else {
+        } 
+        else {
             $user = Yii::$app->user->identity;
         }
         
@@ -84,6 +89,8 @@ class UserController extends \yii\web\Controller
             $account = User::findIdentity($id_user)->findAccount();
             //var_dump($user->username);die;
         } else {
+            $account = Yii::$app->user->identity->findAccount();
+
             if(Yii::$app->session->get('account') == null){
                 Yii::$app->session->set('account', Yii::$app->user->findAccount()); 
             }
@@ -113,19 +120,33 @@ class UserController extends \yii\web\Controller
 
     }
     
-    
-    public function actionChangeAvatar()
+    /**
+     * 
+     */
+    public function actionChangeAvatar($id_user = null)
     {
-        $model = new UploadForm();
+        $model = new UploadForm;
+        
+        /** Upload OK -- Manque : insertion fichier dans table uploaded_file + relié à table avatar.account **/
+        $file = new UploadFile;
         
         //Récupération du dossier frontend/web/uploads/sha1(login)/
-        $user = Yii::$app->user->identity;
+        if($id_user == NULL) {
+            $user = Yii::$app->user->identity;
+        } else {
+            $user = User::findIdentity($id_user);    
+        }
+        
+        //Chemin du dossier upload de l'User
         $hash = sha1($user->username);
-
         $path = 'uploads/'.$hash;
         
         if (Yii::$app->request->isPost) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            
+            //Relier fichier uploadé à table Account
+            
+
             if ($model->upload($path)) {
                 // file is uploaded successfully
                 Yii::$app->getSession()->setFlash(
