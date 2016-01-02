@@ -6,6 +6,14 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 $this->title = 'Echos-Libres - Profil de '.$account->pseudo;
 $this->params['breadcrumbs'][] = $this->title;
+
+//Récupération du path du fichier
+if($account->avatar) {
+    $pathAvatar = '/uploads/'.sha1($user->username).'/'.$avatar->filename;
+} else {
+    $pathAvatar = '/uploads/'.sha1('base').'/avatar.jpg';
+}
+
 ?>
 
 <div id="header-profil">
@@ -35,11 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <a href="<?= Url::to(['user/update-account']) ?>">Modifier le profil</a>
     
     
-    <div id="avatar" style="border-style:solid;">
-        <?= Html::img('/uploads/defaut.jpg'); ?>
+    <div id="avatar">
 
-        <br>
-        <a href="<?= Url::to(['user/change-avatar']) ?>">Ajouter un avatar (compatible Gravatar)</a>
+        <?= Html::img($pathAvatar, ['label'=>'Image', 'format'=>'raw']) ?>
+        
+        <a href="<?= Url::to(['user/change-avatar']) ?>">Ajouter un avatar <br> (compatible Gravatar)</a>
     </div>
 
     

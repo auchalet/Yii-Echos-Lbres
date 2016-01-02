@@ -52,22 +52,27 @@ class UploadFile extends \yii\db\ActiveRecord
         ];
     }
     
+    public static function findIdentity($id)
+    {
+        return static::findOne(['id' => $id]);
+    }
+    
     
     /** ?? Créer fonction avatar qui ajoute le fichier dans le BD puis le relie à l'user_account ?? **/
-    public function addFile($file)
+    public function addFile($file, $type = null)
     {
         if($file != NULL) {
             
             $name = explode('.', $file->name);
-            
             $this->filename = $file->name;            
             $this->name = $name[0];
             $this->extension = $name[1];
             $this->type = $file->type;
             $this->size = $file->size;
-            
+            $this->alt = $this->name;
             if($this->save()) {
-                return true;
+
+                return $this->id;
             }
             else {
                 return false;

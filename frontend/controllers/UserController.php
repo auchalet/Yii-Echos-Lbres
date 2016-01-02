@@ -32,6 +32,9 @@ class UserController extends \yii\web\Controller
         }
 
         $accountUser = $user->findAccount();
+        
+        $avatar = UploadFile::findIdentity($accountUser->avatar);
+        
         $memberUser = $user->findMember();        
         //var_dump($accountUser, $memberUser); die;
         
@@ -39,7 +42,8 @@ class UserController extends \yii\web\Controller
         return $this->render('index', [
             'user' => $user,
             'account' => $accountUser,
-            'member' => $memberUser
+            'member' => $memberUser,
+            'avatar' => $avatar
         ]);
     }
     
@@ -143,11 +147,15 @@ class UserController extends \yii\web\Controller
         
         if (Yii::$app->request->isPost) {
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            
-            //Relier fichier uploadé à table Account
-            
 
-            if ($model->upload($path)) {
+            if ($id = $model->upload($path)) {
+                
+                //Association user
+                $accountUser = $user->findAccount();
+                $accountUser->updateAvatar($id);
+                
+                
+                                
                 // file is uploaded successfully
                 Yii::$app->getSession()->setFlash(
                     'success','Avatar changé'

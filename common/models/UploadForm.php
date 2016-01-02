@@ -26,20 +26,21 @@ class UploadForm extends Model
             
             try {
                 FileHelper::createDirectory ( $path, $mode = 509, $recursive = true );
+                //var_dump(FileHelper::findFiles($path));
                 $this->imageFile->saveAs( $path . '/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
                 
                 //Ajouter nouvel UploadFile() dans la BD -- Manque plus qu'à save
                 $file = new UploadFile;
-                               
-                $file->addFile($this->imageFile);
+
+                return $file->addFile($this->imageFile);
                 
-                    
+                
+                
             } catch (Exception $ex) {
                 echo "Exception upload_file : ".$ex->getMessage();
             }
 
             
-            return true;
         } else {
             return false;
         }

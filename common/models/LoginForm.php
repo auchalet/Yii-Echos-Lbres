@@ -68,7 +68,7 @@ class LoginForm extends Model
                Yii::$app->session->set('member', $member); 
             }
             if($account != null){
-                Yii::$app->session->set('account', $acount); 
+                Yii::$app->session->set('account', $account); 
             }
             
 

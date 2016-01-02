@@ -42,7 +42,7 @@ class Account extends \yii\db\ActiveRecord
         return [
             [['pseudo', 'user_id'], 'required'],
             [['age'], 'integer'],
-            [['favorite_category', 'newsletter', 'user_id'], 'integer'],
+            [['favorite_category', 'newsletter', 'user_id', 'avatar'], 'integer'],
             [['past', 'present', 'future', 'why_register', 'skills', 'interests', 'other'], 'string'],
             [['pseudo', 'sex'], 'string', 'max' => 128]
         ];
@@ -67,6 +67,7 @@ class Account extends \yii\db\ActiveRecord
             'interests' => 'Centre d\'intérêt',
             'other' => 'Expression Libre',
             'newsletter' => 'Inscription newsletter',
+            'avatar' => 'Avatar',
             'user_id' => 'User ID',
         ];
     }
@@ -77,5 +78,19 @@ class Account extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    
+    
+    
+    public function updateAvatar($idFile)
+    {
+        
+        $this->avatar = $idFile;
+        
+        if($this->save()) {
+            return true;
+        }
+        
+        return false;
     }
 }

@@ -224,4 +224,10 @@ class SiteController extends Controller
          * TODO : Redirection sur la home avec l'user en param -> Affiche un div avec "Votre compte est activé"
          */
     }
+    
+    
+    public function actionBuild()
+    {
+        return $this->renderPartial('build');
+    }
 }
