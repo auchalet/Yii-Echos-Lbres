@@ -1,7 +1,6 @@
 <?php 
 
 use yii\helpers\Html;
-var_dump($user->username);
 ?>
 
 <h1>Modifier identifiants</h1>

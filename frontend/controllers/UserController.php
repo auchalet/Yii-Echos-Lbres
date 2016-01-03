@@ -64,7 +64,7 @@ class UserController extends \yii\web\Controller
             $user = Yii::$app->user->identity;
         }
         
-        
+        var_dump(Yii::$app->request->post());
         if($model->load(Yii::$app->request->post()) && $model->validate()){
             
             if($model->updateLogs($user)){

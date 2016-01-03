@@ -17,7 +17,7 @@ class Repository {
         
     public function __construct() {
         
-        $dsn = 'mysql:dbname=yii;host=127.0.0.1';
+        $dsn = 'mysql:dbname=hvtv;host=localhost';
         $user = 'root';
         $password = '';  
         
