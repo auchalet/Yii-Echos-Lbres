@@ -16,7 +16,7 @@ class UploadForm extends Model
     public function rules()
     {
         return [
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg'],
         ];
     }
     
@@ -45,4 +45,32 @@ class UploadForm extends Model
             return false;
         }
     }
+    
+    public function uploadAvatar($path)
+    {
+        if ($this->validate()) {
+            
+            try {
+                FileHelper::createDirectory ( $path, $mode = 509, $recursive = true );
+                //var_dump(FileHelper::findFiles($path));
+                $this->imageFile->saveAs( $path . '/avatar.' . $this->imageFile->extension);
+                
+                //Ajouter nouvel UploadFile() dans la BD -- Manque plus qu'à save
+                $file = new UploadFile;
+                
+                $name = 'avatar';
+                $filename = 'avatar.'.$this->imageFile->extension;
+                return $file->addFile($this->imageFile, $name, $filename);
+                
+                
+                
+            } catch (Exception $ex) {
+                echo "Exception upload_file : ".$ex->getMessage();
+            }
+
+            
+        } else {
+            return false;
+        }
+    }    
 }

@@ -129,29 +129,30 @@ class UserController extends \yii\web\Controller
      */
     public function actionChangeAvatar($id_user = null)
     {
-        $model = new UploadForm;
-        
-        /** Upload OK -- Manque : insertion fichier dans table uploaded_file + relié à table avatar.account **/
-        $file = new UploadFile;
+        $model = new UploadForm;        
         
         //Récupération du dossier frontend/web/uploads/sha1(login)/
         if($id_user == NULL) {
             $user = Yii::$app->user->identity;
+            
         } else {
             $user = User::findIdentity($id_user);    
         }
         
-        //Chemin du dossier upload de l'User
-        $hash = sha1($user->username);
-        $path = 'uploads/'.$hash;
+        $accountUser = $user->findAccount();
+
+        $avatar = UploadFile::findIdentity($accountUser->avatar);
         
         if (Yii::$app->request->isPost) {
+            
+            //Chemin du dossier upload de l'User
+            $hash = sha1($user->username);
+            $path = 'uploads/'.$hash;            
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
 
-            if ($id = $model->upload($path)) {
+            if ($id = $model->uploadAvatar($path)) {
                 
                 //Association user
-                $accountUser = $user->findAccount();
                 $accountUser->updateAvatar($id);
                 
                 
@@ -167,8 +168,10 @@ class UserController extends \yii\web\Controller
             }
         }
 
-        return $this->render('/tools/upload', [
+        return $this->renderAjax('/tools/switch-avatar', [
             'model' => $model,
+            'user' => $user,
+            'avatar' => $avatar
                 ]);
     }
 

@@ -115,3 +115,57 @@ a.desc:after {
     max-width: 200px;
     max-height: 200px;
 }
+
+.popup {
+    z-index: 10;
+    display: none;
+    padding: 15px;
+}
+
+.profile-picture-popup {
+    text-align: left;
+    border: 1px solid #C0C0C0;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.profile-picture-popup .avatar-change {
+    height: 42px;
+    padding: 4px 0px;
+    margin: 8px 0px;
+    position: relative;
+    text-decoration: none;
+    display: block;
+}
+
+.profile-picture-popup #avatar-upload {
+    margin-top: 15px;
+}
+
+.profile-picture-popup #profile-picture-cancel {
+    float: right;
+}
+
+.user-page .popup * {
+    box-sizing: content-box !important;
+}
+
+.profile-picture-popup .avatar-change img {
+    border: 1px solid #CCC;
+    height: 42px;
+    width: 42px;
+    left: 4px;
+    position: absolute;
+    top: 4px;
+}
+
+.profile-picture-popup .avatar-change .avatar-description {
+    line-height: 42px;
+    font-size: 16px;
+    padding-left: 56px;
+    font-weight: bold;
+    cursor:pointer;
+}
+
+h2 {
+    font-size: 18px;
+}

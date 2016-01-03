@@ -59,17 +59,36 @@ class UploadFile extends \yii\db\ActiveRecord
     
     
     /** ?? Créer fonction avatar qui ajoute le fichier dans le BD puis le relie à l'user_account ?? **/
-    public function addFile($file, $type = null)
+    public function addFile($file, $name = null, $filename = null, $alt = null)
     {
         if($file != NULL) {
             
-            $name = explode('.', $file->name);
-            $this->filename = $file->name;            
-            $this->name = $name[0];
-            $this->extension = $name[1];
+            if($name == NULL) {
+            }
+            
+            
+            if($name!=NULL) {
+                $this->name = $name;
+                $ext = explode('.', $file->name);
+                $this->extension = $ext[1];
+            } else {
+                $name = explode('.', $file->name);                
+                $this->name = $name[0];
+                $this->extension = $name[1];
+            }
+            
+            if($filename!=NULL) {
+                $this->filename = $filename;
+            } else {
+                $this->filename = $file->name;            
+            }
+            
+            if($alt!=NULL) {
+                $this->alt = $alt;
+            }
+            
             $this->type = $file->type;
             $this->size = $file->size;
-            $this->alt = $this->name;
             if($this->save()) {
 
                 return $this->id;

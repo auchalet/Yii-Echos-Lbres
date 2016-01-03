@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 $this->title = 'Echos-Libres - Profil de '.$account->pseudo;
@@ -47,8 +47,23 @@ if($account->avatar) {
 
         <?= Html::img($pathAvatar, ['label'=>'Image', 'format'=>'raw']) ?>
         
-        <a href="<?= Url::to(['user/change-avatar']) ?>">Ajouter un avatar <br> (compatible Gravatar)</a>
+        <button value="<?= Url::to(['user/change-avatar']) ?>" class="btn btn-primary" id="change-avatar">Ajouter un avatar <br> (compatible Gravatar)</a>
     </div>
+    
+
+    <!-- Popup en JS pour changer l'avatar -->
+    <?php
+    
+        Modal::begin([
+            'id' => 'modal',
+            
+        ]);
+
+        echo '<div id="picture-popup"></div>';
+
+        Modal::end();
+    
+    ?>
 
     
 
