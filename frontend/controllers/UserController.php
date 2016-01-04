@@ -154,9 +154,7 @@ class UserController extends \yii\web\Controller
                 
                 //Association user
                 $accountUser->updateAvatar($id);
-                
-                
-                                
+              
                 // file is uploaded successfully
                 Yii::$app->getSession()->setFlash(
                     'success','Avatar changé'
@@ -168,11 +166,55 @@ class UserController extends \yii\web\Controller
             }
         }
 
-        return $this->renderAjax('/tools/switch-avatar', [
+        return $this->renderAjax('change-avatar', [
             'model' => $model,
             'user' => $user,
             'avatar' => $avatar
                 ]);
+    }
+    
+    /**
+     * Changement de l'avatar de l'utilisateur COURANT
+     * @param String $type
+     */
+    public function actionSwitchAvatar() {
+        
+        if(Yii::$app->request->isPost && Yii::$app->request->post('t')) {
+            if(Yii::$app->session->get('account')) {
+                $account = Yii::$app->session->get('account');
+            } else {
+                $user = Yii::$app->user->identity;
+                $account = $user->findAccount();
+            }
+            
+            switch (Yii::$app->request->post('t')) {
+                case 'avatar-default':
+                    $type = 0;
+
+                    break;
+                case 'avatar-perso':
+                    $type = 1;
+
+                    break;
+                case 'gravatar':
+                    $type = 2;
+
+                    break;
+
+            }
+            
+            if($account->switchAvatar($type)) {
+                return true;
+            }
+           
+            
+        }
+        
+        return false;
+        
+        
+        
+        
     }
 
 }

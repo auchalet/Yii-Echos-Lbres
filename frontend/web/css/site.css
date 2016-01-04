@@ -163,7 +163,11 @@ a.desc:after {
     font-size: 16px;
     padding-left: 56px;
     font-weight: bold;
-    cursor:pointer;
+    
+}
+
+.avatar-change > * {
+    cursor : pointer;
 }
 
 h2 {

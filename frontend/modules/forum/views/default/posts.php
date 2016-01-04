@@ -86,7 +86,7 @@ $id_topic=$this->context->actionParams['id_topic'];
         
         if(type=='plus'){
             console.log(id);
-            $.post('/post/voteup',{
+            $.post('index.php?r=post/voteup',{
                 id: id
             })
             .success(function(data){
@@ -99,7 +99,7 @@ $id_topic=$this->context->actionParams['id_topic'];
         
         if(type=='moins'){
             console.log('moins');
-            $.post('/post/votedown',{
+            $.post('index.php?r=post/votedown',{
                 id: id
             })
             .success(function(data){

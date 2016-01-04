@@ -23,19 +23,19 @@ $gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->e
 <div style="display: block;" class="popup profile-picture-popup">
     <h2>Change ton avatar</h2>
         <hr>
-        <a class="avatar-change">
+        <a class="avatar-change" id="avatar-default">
             <?= Html::img($pathBaseAvatar, ['label'=>'Image', 'format'=>'raw']) ?>
             <span class="avatar-description">Avatar par défaut</span>
             <span class="badge-earned-check"></span>
         </a>    
         <hr>
-        <a class="avatar-change">
+        <a class="avatar-change" id="avatar-perso">
             <?= Html::img($pathAvatar, ['label'=>'Image', 'format'=>'raw']) ?>
             <span class="avatar-description">Avatar du site</span>
             <span class="badge-earned-check"></span>
         </a>
         <hr>
-        <a class="avatar-change">
+        <a class="avatar-change" id="gravatar">
             <?= Html::img($gravatar_path, ['label'=>'Image', 'format'=>'raw']) ?>            
             <span class="avatar-description">Gravatar</span>
             <span class="badge-earned-check"></span>
@@ -54,3 +54,25 @@ $gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->e
 
     <a id="profile-picture-cancel" href="#">cancel</a>
 </div>
+<?php
+    $this->registerJs("
+    //Changement de l'avatar actif
+    $('.avatar-change').click(function() {
+        var t = $(this).attr('id');
+        alert(t);
+        $.ajax({
+            url : 'index.php?r=user/switch-avatar',
+            method: 'POST',
+            data : { t: t }
+        })
+        .done(function(){
+            console.log('switch ok');
+            
+        })
+        .fail(function(){
+            console.log('AJAX fail');
+        });
+        
+    });
+    ",\yii\web\View::POS_READY); 
+?>
