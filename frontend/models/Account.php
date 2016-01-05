@@ -93,13 +93,17 @@ class Account extends \yii\db\ActiveRecord
 
                 break;
             case 1:
+                //var_dump($this);die;
                 $avatar = UploadFile::findIdentity($this->avatar);
+                
+                //Bug sur Ajax $this->avatar = null
                 $path = '/uploads/'.sha1($this->getUser()->username).'/'.$avatar->filename;
+                
                 
 
                 break;
             case 2:
-                $path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->getUser()->email))).'?d=identicon&s=60&r=G';
+                $path = $this->getGravatar(200);
 
 
                 break;
@@ -112,6 +116,16 @@ class Account extends \yii\db\ActiveRecord
         
         
         return $path;
+    }
+    
+    /**
+     * 
+     * @param int $size
+     * @return String L'URL correspondant au gravatar
+     */
+    public function getGravatar($size)
+    {
+        return 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->getUser()->email))).'?d=identicon&s='.$size.'&r=G';
     }
     
     public function updateAvatar($idFile)

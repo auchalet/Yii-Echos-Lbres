@@ -8,14 +8,15 @@ use yii\helpers\Url;
 /* @var $model common\models\UploadForm */
 /* @var $form ActiveForm */
 
+
+
+$pathBaseAvatar = '/uploads/'.sha1('base').'/avatar.jpg';
+
 if($avatar) {
     $pathAvatar = '/uploads/'.sha1($user->username).'/'.$avatar->filename;
 }
 
-$pathBaseAvatar = '/uploads/'.sha1('base').'/avatar.jpg';
-
-
-$gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->email))).'?d=identicon&s=60&r=G';
+$gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->email))).'?d=identicon&s=200&r=G';
 
 ?>
 <!-- tools-upload -->
@@ -27,13 +28,19 @@ $gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->e
             <?= Html::img($pathBaseAvatar, ['label'=>'Image', 'format'=>'raw']) ?>
             <span class="avatar-description">Avatar par défaut</span>
             <span class="badge-earned-check"></span>
-        </a>    
+        </a>  
+        
+        <?php if($avatar): ?>
+        
         <hr>
         <a class="avatar-change" id="avatar-perso">
             <?= Html::img($pathAvatar, ['label'=>'Image', 'format'=>'raw']) ?>
             <span class="avatar-description">Avatar du site</span>
             <span class="badge-earned-check"></span>
         </a>
+        
+        <?php endif; ?>
+        
         <hr>
         <a class="avatar-change" id="gravatar">
             <?= Html::img($gravatar_path, ['label'=>'Image', 'format'=>'raw']) ?>            
@@ -49,8 +56,11 @@ $gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->e
 
                 <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'id' => 'avatar-upload']) ?>
                 <?php ActiveForm::end(); ?>
-                <a id="profile-picture-cancel" href="#" class="btn btn-primary">cancel</a>            
-        </div>                
+        </div>
+        <div class="modal-footer">
+            <a id="profile-picture-validate" href="#" class="btn btn-primary">Valider</a> 
+            <a id="profile-picture-cancel" href="#" class="btn btn-primary">Retour</a>    
+        </div>
 
 
     
@@ -72,11 +82,11 @@ $gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->e
     });
     
     //AJAX quand on quitte le modal
-    $('.close').click(function(){
+    $('#profile-picture-validate').click(function(){
     
         var t = $('.active').attr('id');   
         var img = $('#img-avatar');
-
+        console.log(t);
         $.ajax({
             url : 'index.php?r=user/switch-avatar',
             method: 'POST',
@@ -84,7 +94,9 @@ $gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->e
         })
         .done(function(data){        
             //Changement de l'avatar -> pas très optimal
+            console.log(data);
             img.attr('src', data);
+            $('#modal').modal('hide');
             
         })
         .fail(function(){
@@ -92,6 +104,14 @@ $gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->e
         });
 
     });
+    
+    $('#profile-picture-cancel').on('click', function(){
+        console.log('go');
+        $('#modal').modal('hide');
+       
+    })
+    
+    
 
     ",\yii\web\View::POS_READY); 
 ?>

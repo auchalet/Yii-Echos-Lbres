@@ -137,13 +137,21 @@ a.desc:after {
     display: block;
 }
 
-.profile-picture-popup #avatar-upload {
+.profile-picture-popup {
     margin-top: 15px;
+}
+
+#avatar-upload {
+    margin-bottom: 10px;
 }
 
 .profile-picture-popup #profile-picture-cancel {
     float: right;
     
+}
+
+#profile-picture-validate {
+    float:left;
 }
 
 .user-page .popup * {

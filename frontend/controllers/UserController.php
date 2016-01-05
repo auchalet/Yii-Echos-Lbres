@@ -145,10 +145,14 @@ class UserController extends \yii\web\Controller
         $accountUser = $user->findAccount();
 
         
-        //$avatar = $accountUser->getAvatar();
+        if($accountUser->getAvatar() != NULL) {
+            $avatar = UploadFile::findIdentity($accountUser->avatar);
+        }
+        else {
+            $avatar = NULL;
+        }
 
-        $avatar = UploadFile::findIdentity($accountUser->avatar);
-        
+        //var_dump($avatar);die;
         if (Yii::$app->request->isPost) {
             
             //Chemin du dossier upload de l'User
