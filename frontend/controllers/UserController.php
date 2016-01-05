@@ -33,7 +33,7 @@ class UserController extends \yii\web\Controller
 
         $accountUser = $user->findAccount();
         
-        $avatar = UploadFile::findIdentity($accountUser->avatar);
+        $avatar = $accountUser->getAvatar();
         
         $memberUser = $user->findMember();        
         //var_dump($accountUser, $memberUser); die;
@@ -115,11 +115,14 @@ class UserController extends \yii\web\Controller
     
     public function actionNewsletter($sub)
     {
-        if($sub === 'subscribe') {
+        if($sub == 1) {
             var_dump('Subscribe newsletter');
         }
-        elseif($sub === 'unsubscribe') {
+        elseif($sub == 0) {
             var_dump('Unsubscribe newsletter');
+        }
+        else {
+            return false;
         }
 
     }
@@ -140,6 +143,9 @@ class UserController extends \yii\web\Controller
         }
         
         $accountUser = $user->findAccount();
+
+        
+        //$avatar = $accountUser->getAvatar();
 
         $avatar = UploadFile::findIdentity($accountUser->avatar);
         
@@ -173,6 +179,7 @@ class UserController extends \yii\web\Controller
                 ]);
     }
     
+    
     /**
      * Changement de l'avatar de l'utilisateur COURANT
      * @param String $type
@@ -204,7 +211,7 @@ class UserController extends \yii\web\Controller
             }
             
             if($account->switchAvatar($type)) {
-                return true;
+                return $account->getAvatar();
             }
            
             

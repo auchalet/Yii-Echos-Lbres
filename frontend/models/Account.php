@@ -3,6 +3,8 @@
 namespace frontend\models;
 
 use Yii;
+use common\models\UploadFile;
+use common\models\User;
 
 /**
  * This is the model class for table "account".
@@ -78,15 +80,45 @@ class Account extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id'])->one();
     }
     
     
+    //Renvoie l'avatar choisi par active_avatar de l'Account
+    public function getAvatar()
+    {
+        switch ($this->active_avatar) {
+            case 0:
+                $path = '/uploads/'.sha1('base').'/avatar.jpg';
+
+                break;
+            case 1:
+                $avatar = UploadFile::findIdentity($this->avatar);
+                $path = '/uploads/'.sha1($this->getUser()->username).'/'.$avatar->filename;
+                
+
+                break;
+            case 2:
+                $path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($this->getUser()->email))).'?d=identicon&s=60&r=G';
+
+
+                break;
+
+            default:
+                $path = '/uploads/'.sha1('base').'/avatar.jpg';
+                
+                break;
+        }
+        
+        
+        return $path;
+    }
     
     public function updateAvatar($idFile)
     {
         
         $this->avatar = $idFile;
+        $this->active_avatar = 1;
         
         if($this->save()) {
             return true;

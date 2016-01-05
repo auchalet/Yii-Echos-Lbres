@@ -7,12 +7,7 @@ use yii\bootstrap\Modal;
 $this->title = 'Echos-Libres - Profil de '.$account->pseudo;
 $this->params['breadcrumbs'][] = $this->title;
 
-//Récupération du path du fichier
-if($account->avatar) {
-    $pathAvatar = '/uploads/'.sha1($user->username).'/'.$avatar->filename;
-} else {
-    $pathAvatar = '/uploads/'.sha1('base').'/avatar.jpg';
-}
+
 
 ?>
 
@@ -45,7 +40,7 @@ if($account->avatar) {
     
     <div id="avatar">
 
-        <?= Html::img($pathAvatar, ['label'=>'Image', 'format'=>'raw']) ?>
+        <?= Html::img($avatar, ['id' => 'img-avatar', 'label'=>'Image', 'format'=>'raw']) ?>
         
         <button value="<?= Url::to(['user/change-avatar']) ?>" class="btn btn-primary" id="change-avatar">Ajouter un avatar <br> (compatible Gravatar)</a>
     </div>
@@ -144,10 +139,10 @@ if($account->avatar) {
     
     <?php if($account->newsletter): ?>
         <span>Newsletter : <i>Inscrit</i></span>
-        <span class="btn"><a href="<?= Url::to(['user/newsletter', 'sub' => 'unsubscribe']) ?>">Désinscription</a></span>
+        <span class="btn"><a href="<?= Url::to(['user/newsletter', 'sub' => 0]) ?>">Désinscription</a></span>
     <?php else: ?>
         <span>Newsletter : <i>Non-inscrit</i></span>
-        <span class="btn"><a href="<?= Url::to(['user/newsletter', 'sub' => 'subscribe']) ?>">Inscription</a></span>
+        <span class="btn"><a href="<?= Url::to(['user/newsletter', 'sub' => 1]) ?>">Inscription</a></span>
     <?php endif; ?>
         
 </div>

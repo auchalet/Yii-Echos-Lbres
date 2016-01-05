@@ -19,7 +19,7 @@ class Repository {
         
         $dsn = 'mysql:dbname=hvtv;host=localhost';
         $user = 'root';
-        $password = '';  
+        $password = '0000';  
         
         $this->db = new Connection([
             'dsn' => $dsn,

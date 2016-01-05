@@ -49,30 +49,49 @@ $gravatar_path = 'https://www.gravatar.com/avatar/'.md5(strtolower(trim($user->e
 
                 <?= Html::submitButton('Upload', ['class' => 'btn btn-primary', 'id' => 'avatar-upload']) ?>
                 <?php ActiveForm::end(); ?>
+                <a id="profile-picture-cancel" href="#" class="btn btn-primary">cancel</a>            
         </div>                
 
 
-    <a id="profile-picture-cancel" href="#">cancel</a>
+    
 </div>
 <?php
     $this->registerJs("
-    //Changement de l'avatar actif
+    //Changement de l'avatar actif -- OK
     $('.avatar-change').click(function() {
-        var t = $(this).attr('id');
-        alert(t);
+        var e = $(this);
+        var d = $(this).children('.avatar-description');
+        
+        $('.active').children('.avatar-description').removeAttr('style');            
+        $('.active').removeClass('active');
+        e.addClass('active');
+        d.css('font-size', '20px');
+
+
+        
+    });
+    
+    //AJAX quand on quitte le modal
+    $('.close').click(function(){
+    
+        var t = $('.active').attr('id');   
+        var img = $('#img-avatar');
+
         $.ajax({
             url : 'index.php?r=user/switch-avatar',
             method: 'POST',
             data : { t: t }
         })
-        .done(function(){
-            console.log('switch ok');
+        .done(function(data){        
+            //Changement de l'avatar -> pas très optimal
+            img.attr('src', data);
             
         })
         .fail(function(){
             console.log('AJAX fail');
         });
-        
+
     });
+
     ",\yii\web\View::POS_READY); 
 ?>
