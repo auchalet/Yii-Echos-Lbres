@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use common\models\LoginForm;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
+use frontend\models\StartingMailForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use Yii;
@@ -228,6 +229,22 @@ class SiteController extends Controller
     
     public function actionBuild()
     {
-        return $this->renderPartial('build');
+        $model = new StartingMailForm();
+        
+        var_dump(Yii::$app->request->post());
+        
+        if(Yii::$app->request->post() && $model->validate()) {
+            
+            if($model->sendEmail()) {
+                Yii::$app->session->setFlash('success', 'New password was saved.');
+            } else {
+                die('echec envoi');
+            }
+        }
+        
+        var_dump('pas ok');
+        return $this->renderPartial('build', [
+            'model' => $model,
+        ]);
     }
 }

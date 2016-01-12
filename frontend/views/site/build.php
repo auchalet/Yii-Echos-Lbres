@@ -1,3 +1,11 @@
+<?php
+
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -32,13 +40,23 @@
 						<h1 class="animated fadeInDown">ECHOS LIBRES</h1>
 						<p class="animated fadeInUp">Notre site sera accessible prochainement !</br>"Tout vient à point à qui sait attendre"</p></br>
 					</div>
-			   </div>
+		</div>
               </div>
               <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center">
                   <div class="input-group input-group-lg">
-                    <span class="input-group-addon" id="sizing-addon1">Demande d'inscription</span>
-                    <input type="text" class="form-control" placeholder="@votremail" aria-describedby="sizing-addon1">
+
+                        <?php $form = ActiveForm::begin(['id' => 'starting-mail-form']); ?>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon" id="sizing-addon1">Demande d'inscription</span>
+
+                                <?= Html::activeTextInput($model, 'email', ['class' => 'form-control', 'placeholder' => '@votremail', 'aria-describedby' => 'sizing-addon1']) ?>
+
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Inscription">
+                            </div>                    
+                        <?php ActiveForm::end(); ?>                     
                   </div>
                 </div>
               </div>
