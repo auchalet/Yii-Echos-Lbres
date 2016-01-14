@@ -231,9 +231,8 @@ class SiteController extends Controller
     {
         $model = new StartingMailForm();
         
-        var_dump(Yii::$app->request->post());
         
-        if(Yii::$app->request->post() && $model->validate()) {
+        if($model->load(Yii::$app->request->post()) && $model->validate()) {
             
             if($model->sendEmail()) {
                 Yii::$app->session->setFlash('success', 'New password was saved.');
@@ -242,7 +241,7 @@ class SiteController extends Controller
             }
         }
         
-        var_dump('pas ok');
+        
         return $this->renderPartial('build', [
             'model' => $model,
         ]);

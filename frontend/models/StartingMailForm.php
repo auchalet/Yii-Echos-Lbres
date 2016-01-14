@@ -16,9 +16,10 @@ class StartingMailForm extends Model
     public function rules()
     {
         return [
-            ['email', 'email'],
+            ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
-            
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],            
         ];
     }
     
