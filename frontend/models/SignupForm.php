@@ -49,11 +49,24 @@ class SignupForm extends Model
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->generateAuthKey();
-            if ($user->save()) {
-                return $user;
+            if ($this->sendEmail($user->auth_key)) {
+                if($user->save()) {
+                    return $user;
+                }
             }
         }
 
         return null;
+    }
+    
+    
+    public function sendEmail($auth_key)
+    {
+        return \Yii::$app->mailer->compose(['html' => 'signupConfirm-html', 'text' => 'signupConfirm-text'], ['auth_key' => $auth_key])
+            ->setFrom([\Yii::$app->params['supportEmail'] => 'Echos-Libres'])
+            ->setTo($this->email)
+            ->setSubject('Confirmation d\'inscription ' . $this->username)
+            ->send();        
+        
     }
 }

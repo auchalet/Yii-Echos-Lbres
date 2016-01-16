@@ -85,7 +85,19 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
+    
+    /**
+     * Trouve un User en fonction de sa clé d'authentification
+     * Utilisé pour confirmer l'e-mail
+     * @param String $auth_key
+     * @return User
+     */
+    public static function findByAuthKey($auth_key)
+    {
+        return static::findOne(['auth_key' => $auth_key]);
+    }
 
+    
     /**
      * Finds user by password reset token
      *
@@ -136,6 +148,22 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->auth_key;
     }
+    
+    /**
+     * Passe le statut d'un User à 10
+     * @return boolean 
+     */
+    public function setActive()
+    {
+        $this->status = self::STATUS_ACTIVE;
+        
+        if($this->save()) {
+            return true;
+        }
+        
+        return false;
+    }
+    
 
     /**
      * @inheritdoc

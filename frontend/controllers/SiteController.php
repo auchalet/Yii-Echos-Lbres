@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\LoginForm;
+use common\models\User;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\StartingMailForm;
@@ -154,10 +155,8 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                /**
-                 * TODO : Envoyer un mail à l'User avec clé d'activation $user->auth_key (à faire dans SignupForm.php)
-                 */
-                    return $this->goHome();
+                Yii::$app->session->setFlash('success', 'Un mail a été envoyé à '.$user->email);                
+                return $this->goHome();
             }
         }
 
@@ -224,6 +223,14 @@ class SiteController extends Controller
          * TODO : Si $auth_key est trouvée dans la table user, passe le statut de l'user à User::STATUS_ACTIVE
          * TODO : Redirection sur la home avec l'user en param -> Affiche un div avec "Votre compte est activé"
          */
+        
+        $user = User::findByAuthKey($auth_key);
+        
+        if($user!==NULL && $user->setActive()) {
+            Yii::$app->session->setFlash('success', 'Email confirmé ! Vous pouvez désormais vous connecter :)');
+            
+            return $this->goHome();
+        }        
     }
     
     
@@ -235,7 +242,7 @@ class SiteController extends Controller
         if($model->load(Yii::$app->request->post()) && $model->validate()) {
             
             if($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'New password was saved.');
+                Yii::$app->session->setFlash('success', 'Email envoyé');
             } else {
                 die('echec envoi');
             }
