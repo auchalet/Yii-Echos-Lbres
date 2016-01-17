@@ -15,7 +15,7 @@ return [
     'components' => [
         'urlManager' => [
             'showScriptName' => false,
-            'enablePrettyUrl' => true
+            'enablePrettyUrl' => false
         ],
         'user' => [
             'identityClass' => 'common\models\User',

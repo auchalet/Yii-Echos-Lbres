@@ -230,6 +230,10 @@ class SiteController extends Controller
             Yii::$app->session->setFlash('success', 'Email confirmé ! Vous pouvez désormais vous connecter :)');
             
             return $this->goHome();
+        } else {
+            Yii::$app->session->setFlash('error', 'Erreur dans la confirmation / Lien erroné');
+            
+            return $this->goHome();
         }        
     }
     

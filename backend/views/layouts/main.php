@@ -28,7 +28,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Echos-Libres',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -36,6 +36,12 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Utilisateurs', 'url' => ['/user/index']],
+        ['label' => 'Forum', 'url' => ['/forum/index']],
+        ['label' => 'Echos-Libres', 'url' => ['/asso/index']],
+        ['label' => 'Evenements', 'url' => ['/event/index']],
+        ['label' => 'Projets de la communauté', 'url' => ['/project/index']],
+        ['label' => 'Tchat', 'url' => ['/tchat/index']],        
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -46,6 +52,8 @@ AppAsset::register($this);
             'linkOptions' => ['data-method' => 'post']
         ];
     }
+
+    
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
