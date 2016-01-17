@@ -6,6 +6,7 @@
     ],
     "hash": "4b0efd703ea53b4b81c902ea5b766353",
     "content-hash": "567302bf385cced24024ab5e73ef3868",
+
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -126,6 +127,7 @@
             }
         },
         {
+
             "name": "bower-asset/jquery.inputmask",
             "version": "3.1.63",
             "source": {
@@ -631,6 +633,7 @@
             "time": "2015-05-10 22:09:43"
         },
         {
+
             "name": "yiisoft/yii2-swiftmailer",
             "version": "2.0.4",
             "source": {

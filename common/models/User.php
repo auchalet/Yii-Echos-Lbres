@@ -9,6 +9,7 @@ use yii\web\IdentityInterface;
 use frontend\models\Account;
 use frontend\models\Member;
 
+
 /**
  * User model
  *
@@ -58,7 +59,7 @@ class User extends ActiveRecord implements IdentityInterface
             
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -97,7 +98,7 @@ class User extends ActiveRecord implements IdentityInterface
         return static::findOne(['auth_key' => $auth_key]);
     }
 
-    
+
     /**
      * Finds user by password reset token
      *
@@ -163,7 +164,7 @@ class User extends ActiveRecord implements IdentityInterface
         
         return false;
     }
-    
+
 
     /**
      * @inheritdoc
@@ -230,4 +231,5 @@ class User extends ActiveRecord implements IdentityInterface
     }
     
     
+
 }

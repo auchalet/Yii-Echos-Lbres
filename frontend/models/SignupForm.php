@@ -53,6 +53,7 @@ class SignupForm extends Model
                 if($user->save()) {
                     return $user;
                 }
+
             }
         }
 
@@ -69,4 +70,5 @@ class SignupForm extends Model
             ->send();        
         
     }
+
 }

@@ -30,6 +30,7 @@ $id_topic=$this->context->actionParams['id_topic'];
         <div class="tab-content">
         	<strong><?= $val['id'] ?></strong>
                 <i>Créé le : <?= Html::encode($val['createdAt']) ?> par </i><strong><a href="<?= Url::to(['/user/index', 'id_user' => $author[$attr]['id']]) ?>"><?= $author[$attr]['username'] ?></a></strong><br>
+
             <i>Modifié le : <?= Html::encode($val['updatedAt']) ?></i>
             			
             <!-- Score en AJAX -->
@@ -87,6 +88,7 @@ $id_topic=$this->context->actionParams['id_topic'];
         if(type=='plus'){
             console.log(id);
             $.post('index.php?r=post/voteup',{
+
                 id: id
             })
             .success(function(data){
@@ -100,6 +102,7 @@ $id_topic=$this->context->actionParams['id_topic'];
         if(type=='moins'){
             console.log('moins');
             $.post('index.php?r=post/votedown',{
+
                 id: id
             })
             .success(function(data){

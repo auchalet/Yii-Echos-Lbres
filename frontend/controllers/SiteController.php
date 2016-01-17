@@ -6,6 +6,7 @@ use common\models\User;
 use frontend\models\ContactForm;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\StartingMailForm;
+
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use Yii;
@@ -89,8 +90,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        
-        
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
@@ -157,6 +157,7 @@ class SiteController extends Controller
             if ($user = $model->signup()) {
                 Yii::$app->session->setFlash('success', 'Un mail a été envoyé à '.$user->email);                
                 return $this->goHome();
+
             }
         }
 
@@ -256,5 +257,6 @@ class SiteController extends Controller
         return $this->renderPartial('build', [
             'model' => $model,
         ]);
+
     }
 }

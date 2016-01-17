@@ -41,6 +41,7 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'brandLabel' => 'Echos-Libres',
+
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -62,6 +63,7 @@ AppAsset::register($this);
                 ['label' => 'Déconnexion', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']],
                 ['label' => 'Profil', 'url' => ['/user/index']]
             ]
+
         ];
     }
     echo Nav::widget([
@@ -83,6 +85,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; Echos-Libres <?= date('Y') ?></p>
+
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
