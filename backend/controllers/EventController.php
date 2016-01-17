@@ -2,7 +2,11 @@
 
 namespace backend\controllers;
 
-class EventController extends \yii\web\Controller
+use Yii;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+
+class EventController extends Controller
 {
     public function actionIndex()
     {

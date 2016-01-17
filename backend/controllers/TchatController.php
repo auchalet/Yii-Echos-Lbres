@@ -2,7 +2,11 @@
 
 namespace backend\controllers;
 
-class TchatController extends \yii\web\Controller
+use Yii;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+
+class TchatController extends Controller
 {
     public function actionIndex()
     {

@@ -2,7 +2,11 @@
 
 namespace backend\controllers;
 
-class ForumController extends \yii\web\Controller
+use Yii;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+
+class ForumController extends Controller
 {
     public function actionIndex()
     {

@@ -1,9 +1,9 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>user/index</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<h1>Gestion des utilisateurs</h1>
+
+<ul class="nav nav-tabs nav-justified">
+    <li><a href="/index.php?r=user/list">Liste des membres</a></li>
+</ul>

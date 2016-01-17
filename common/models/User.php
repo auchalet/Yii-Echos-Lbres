@@ -67,6 +67,12 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
+    
+    public static function getAll()
+    {
+        return static::find()->all();
+    }
+    
 
     /**
      * @inheritdoc
@@ -229,6 +235,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(Account::classname(), ['user_id' => 'id'])->one();
     }
+    
+   
     
     
 
