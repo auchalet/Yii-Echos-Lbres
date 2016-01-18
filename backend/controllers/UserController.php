@@ -27,7 +27,6 @@ class UserController extends Controller
 
         return $this->render('list', [
             'users' => $users,
-            'account' => $account
         ]);
         
         

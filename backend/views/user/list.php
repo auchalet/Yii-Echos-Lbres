@@ -21,7 +21,6 @@
         <tr>
             <th><span class="glyphicon glyphicon-user"></span></th>
             <th>Pseudo</th>
-            <th>Login</th>
             <th>E-mail</th>
             <th>Statut</th>            
             <th>Action</th>            
@@ -32,7 +31,6 @@
         <?php foreach($users as $k => $v): ?>
         <tr>
             <td><?= $k+1 ?></td>
-            <td><?= $account[$k]['pseudo'] ?></td>
             <td><?= $v->username ?></td>
             <td><?= $v->email ?></td>
             <td><?= $v->status ?></td>
