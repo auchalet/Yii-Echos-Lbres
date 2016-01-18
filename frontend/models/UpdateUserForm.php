@@ -50,7 +50,7 @@ class UpdateUserForm extends Model
             if($user->email != $this->email) {
                 $user->email = $this->email;
             }
-            if($this->password === $this->password_repeat) {
+            if($this->password && $this->password === $this->password_repeat) {
                 // generates the hash (usually done during user registration or when the password is changed)
                 $hash = Yii::$app->getSecurity()->generatePasswordHash($this->password);
                 

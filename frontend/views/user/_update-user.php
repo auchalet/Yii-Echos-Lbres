@@ -9,7 +9,7 @@ $account = Yii::$app->session->get('account');
 
 /* @var $this yii\web\View */
 $this->title = 'Modification des identifiants';
-$this->params['breadcrumbs'][] = ['label' => $account->pseudo.' - Profil'];
+$this->params['breadcrumbs'][] = ['label' => $user->username.' - Profil'];
 $this->params['breadcrumbs'][] = $this->title;
 
 /* @var $this yii\web\View */
