@@ -10,12 +10,17 @@ Je vais essayer de te guider pas à pas.
 
 
 Je te recommandes d'avoir Composer afin de gérer les dépendances du site.
- `curl -sS https://getcomposer.org/installer | php`
- `sudo mv composer.phar /usr/local/bin/composer.phar`
- `alias composer='/usr/local/bin/composer.phar'`
+`
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer.phar
+alias composer='/usr/local/bin/composer.phar'
+`
 
 
-Dans ton dossier www, fais un : `git clone https://github.com/auchalet/Yii-Echos-Lbres.git`
+Dans ton dossier www : 
+`
+git clone https://github.com/auchalet/Yii-Echos-Lbres.git
+`
 Sous Linux, je te recommande créer un lien symbolique sur ton répertoire home par bonne pratique de ne pas
 manipuler le répertoire du serveur.
 
@@ -25,13 +30,17 @@ Renomme ce répertoire si nécessaire.
 Par défaut, sous Linux, l'adresse http://localhost pointe sur le répertoire default, il faut donc créer
 un fichier dans la configuration d'Apache correspondant au nouveau site.
 
- `/etc/apache2/sites-available`
+`
+/etc/apache2/sites-available
+`
 
 Prenez pour exemple le fichier 000-default.conf
 
- `cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/votresite.conf`
+`
+cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/votresite.conf
+`
 
-
+Editez ce fichier de cette manière :
 
 `
    <VirtualHost *:80>
@@ -79,8 +88,8 @@ Prenez pour exemple le fichier 000-default.conf
 Déclarez enfin votre Virtual Host dans le fichier `/etc/hosts`
 
 `
-    127.0.0.1   backend.dev
-    127.0.0.1   frontend.dev
+127.0.0.1   backend.dev
+127.0.0.1   frontend.dev
 `
 
 Il ne reste plus qu'à activer le fichier de configuration créé
@@ -110,16 +119,16 @@ A la racine du répertoire du site :
 
 Editez le fichier /config/main-local.php 
 `
-return [
-    'components' => [
-        'db' => [
-            'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=echos',
-            'username' => 'login',
-            'password' => 'password',
-            'charset' => 'utf8',
-        ],
-    ];
+    return [
+        'components' => [
+            'db' => [
+                'class' => 'yii\db\Connection',
+                'dsn' => 'mysql:host=localhost;dbname=echos',
+                'username' => 'login',
+                'password' => 'password',
+                'charset' => 'utf8',
+            ],
+        ];
 `
 
 
