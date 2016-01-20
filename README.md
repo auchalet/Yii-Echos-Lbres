@@ -1,54 +1,134 @@
-Yii 2 Advanced Project Template
-===============================
+# Réalisation du site de l'association **Echos-Libres**
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
 
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-advanced/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-advanced/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-advanced)
+*Tu souhaites installer ce site sur ton serveur local ?*
 
-DIRECTORY STRUCTURE
--------------------
+Je vais essayer de te guider pas à pas.
 
-```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
-tests                    contains various tests for the advanced application
-    codeception/         contains tests developed with Codeception PHP Testing Framework
-```
+
+Je te recommandes d'avoir Composer afin de gérer les dépendances du site.
+ `curl -sS https://getcomposer.org/installer | php`
+ `sudo mv composer.phar /usr/local/bin/composer.phar`
+ `alias composer='/usr/local/bin/composer.phar'`
+
+
+Dans ton dossier www, fais un : `git clone https://github.com/auchalet/Yii-Echos-Lbres.git`
+Sous Linux, je te recommande créer un lien symbolique sur ton répertoire home par bonne pratique de ne pas
+manipuler le répertoire du serveur.
+
+
+Renomme ce répertoire si nécessaire.
+
+Par défaut, sous Linux, l'adresse http://localhost pointe sur le répertoire default, il faut donc créer
+un fichier dans la configuration d'Apache correspondant au nouveau site.
+
+ `/etc/apache2/sites-available`
+
+Prenez pour exemple le fichier 000-default.conf
+
+ `cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/votresite.conf`
+
+
+
+`
+   <VirtualHost *:80>
+       ServerName frontend.dev
+       DocumentRoot "/var/www/votresite/frontend/web/"
+
+       <Directory "/var/www/votresite/frontend/web/">
+           # use mod_rewrite for pretty URL support
+           RewriteEngine on
+           # If a directory or a file exists, use the request directly
+           RewriteCond %{REQUEST_FILENAME} !-f
+           RewriteCond %{REQUEST_FILENAME} !-d
+           # Otherwise forward the request to index.php
+           RewriteRule . index.php
+
+           # use index.php as index file
+           DirectoryIndex index.php
+
+           # ...other settings...
+       </Directory>
+   </VirtualHost>
+
+   <VirtualHost *:80>
+       ServerName backend.dev
+       DocumentRoot "/var/www/votresite/backend/web/"
+
+       <Directory "/var/www/votresite/backend/web/">
+           # use mod_rewrite for pretty URL support
+           RewriteEngine on
+           # If a directory or a file exists, use the request directly
+           RewriteCond %{REQUEST_FILENAME} !-f
+           RewriteCond %{REQUEST_FILENAME} !-d
+           # Otherwise forward the request to index.php
+           RewriteRule . index.php
+
+           # use index.php as index file
+           DirectoryIndex index.php
+
+           # ...other settings...
+       </Directory>
+   </VirtualHost>
+`
+
+
+Déclarez enfin votre Virtual Host dans le fichier `/etc/hosts`
+
+`
+    127.0.0.1   backend.dev
+    127.0.0.1   frontend.dev
+`
+
+Il ne reste plus qu'à activer le fichier de configuration créé
+ `sudo a2ensite votresite`
+
+Vérifier que le mod_rewrite d'Apache est bien activé
+ `sudo a2enmod rewrite`
+
+Redémarrez votre serveur Apache 
+ `sudo service apache2 restart`
+
+
+A ce stade, à l'adresse frontend.dev et backend.dev vous devriez accéder à la page d'accueil.
+(PS : j'ai eu à renommer le dossier /vendor/bower-asset en /vendor/bower )
+
+
+Installer les dépendances :
+`sudo composer install`
+
+Et la base de données contenue sur ce dépôt : `https://github.com/auchalet/sql`
+
+Copiez/Collez le contenu dans mysql.
+
+Lancez une première fois l'application en mode développement
+A la racine du répertoire du site : 
+`php yii init`
+
+Editez le fichier /config/main-local.php 
+`
+return [
+    'components' => [
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=echos',
+            'username' => 'login',
+            'password' => 'password',
+            'charset' => 'utf8',
+        ],
+    ];
+`
+
+
+Vous avez (si tout se passe bien), installé le site !
+Si ce n'est pas le cas, je vous encourage à me contacter via l'adresse : echos-libres@protonmail.com, afin de
+parfaire ce tutoriel.
+
+
+L'aventure Echos-Libres débutera prochainement...
+
+
+
