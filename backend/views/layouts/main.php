@@ -35,19 +35,19 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Utilisateurs', 'url' => ['/user/index']],
-        ['label' => 'Forum', 'url' => ['/forum/index']],
-        ['label' => 'Echos-Libres', 'url' => ['/asso/index']],
-        ['label' => 'Evenements', 'url' => ['/event/index']],
-        ['label' => 'Projets de la communauté', 'url' => ['/project/index']],
-        ['label' => 'Tchat', 'url' => ['/tchat/index']],        
-
-    ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems = [
+            ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Utilisateurs', 'url' => ['/user/index']],
+            ['label' => 'Forum', 'url' => ['/forum/index']],
+            ['label' => 'Echos-Libres', 'url' => ['/asso/index']],
+            ['label' => 'Evenements', 'url' => ['/event/index']],
+            ['label' => 'Projets de la communauté', 'url' => ['/project/index']],
+            ['label' => 'Tchat', 'url' => ['/tchat/index']],        
+
+        ];        
         $menuItems[] = [
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],
