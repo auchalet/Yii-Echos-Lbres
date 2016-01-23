@@ -4,9 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4b0efd703ea53b4b81c902ea5b766353",
-    "content-hash": "567302bf385cced24024ab5e73ef3868",
-
+    "hash": "b90d8293d34879480473be9dce786de2",
+    "content-hash": "c0be1ac6a38b660c5e04e638a8c7c250",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -56,6 +55,74 @@
                 "responsive",
                 "web"
             ]
+        },
+        {
+            "name": "bower-asset/d3",
+            "version": "v3.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mbostock/d3.git",
+                "reference": "a40a611d6b9fc4ff3815ca830d86b6c00d130995"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mbostock/d3/zipball/a40a611d6b9fc4ff3815ca830d86b6c00d130995",
+                "reference": "a40a611d6b9fc4ff3815ca830d86b6c00d130995",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "d3.js",
+                "bower-asset-ignore": [
+                    ".DS_Store",
+                    ".git",
+                    ".gitignore",
+                    ".npmignore",
+                    ".spmignore",
+                    ".travis.yml",
+                    "Makefile",
+                    "bin",
+                    "component.json",
+                    "composer.json",
+                    "index.js",
+                    "lib",
+                    "node_modules",
+                    "package.json",
+                    "src",
+                    "test"
+                ]
+            }
+        },
+        {
+            "name": "bower-asset/d3-tip",
+            "version": "v0.6.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Caged/d3-tip.git",
+                "reference": "07cf158c54cf1686b3000d784ef55d27b095cc0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Caged/d3-tip/zipball/07cf158c54cf1686b3000d784ef55d27b095cc0e",
+                "reference": "07cf158c54cf1686b3000d784ef55d27b095cc0e",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/d3": "3.5.5"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "index.js",
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "node_modules",
+                    "components",
+                    "bower_components",
+                    "examples",
+                    "Makefile",
+                    "docs"
+                ]
+            }
         },
         {
             "name": "bower-asset/jquery",
@@ -127,7 +194,6 @@
             }
         },
         {
-
             "name": "bower-asset/jquery.inputmask",
             "version": "3.1.63",
             "source": {
@@ -209,16 +275,16 @@
         },
         {
             "name": "bower-asset/yii2-pjax",
-            "version": "v2.0.4",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/jquery-pjax.git",
-                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0"
+                "reference": "6818718408086db6bdcf33649cecb86b6b4f9b67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/3f20897307cca046fca5323b318475ae9dac0ca0",
-                "reference": "3f20897307cca046fca5323b318475ae9dac0ca0",
+                "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/6818718408086db6bdcf33649cecb86b6b4f9b67",
+                "reference": "6818718408086db6bdcf33649cecb86b6b4f9b67",
                 "shasum": ""
             },
             "require": {
@@ -343,6 +409,53 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "githubjeka/yii2-gui-rbac",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/githubjeka/gui-rbac-yii2.git",
+                "reference": "0f925d31d8bc6fe93b1f8117b67749ec5f2ede87"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/githubjeka/gui-rbac-yii2/zipball/0f925d31d8bc6fe93b1f8117b67749ec5f2ede87",
+                "reference": "0f925d31d8bc6fe93b1f8117b67749ec5f2ede87",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/d3": ">=3.4",
+                "bower-asset/d3-tip": ">=0.6,<default",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*",
+                "yiisoft/yii2-bootstrap": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "githubjeka\\rbac\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evgeniy Tkachenko",
+                    "email": "et.coder@gmail.com",
+                    "homepage": "https://github.com/githubjeka"
+                }
+            ],
+            "description": "Yii 2 RBAC management GUI interface",
+            "homepage": "https://github.com/githubjeka/gui-rbac-yii2",
+            "keywords": [
+                "gui",
+                "rbac",
+                "yii2"
+            ],
+            "time": "2015-06-20 05:23:34"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -487,21 +600,21 @@
         },
         {
             "name": "yiisoft/yii2-bootstrap",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "1b6b1e61cf91c3cdd517d6a7e71d30bb212e4af0"
+                "reference": "1464f93834b1d5edb1f5625f7ffd6c3723fa4923"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/1b6b1e61cf91c3cdd517d6a7e71d30bb212e4af0",
-                "reference": "1b6b1e61cf91c3cdd517d6a7e71d30bb212e4af0",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/1464f93834b1d5edb1f5625f7ffd6c3723fa4923",
+                "reference": "1464f93834b1d5edb1f5625f7ffd6c3723fa4923",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
-                "yiisoft/yii2": ">=2.0.4"
+                "yiisoft/yii2": ">=2.0.6"
             },
             "type": "yii2-extension",
             "extra": {
@@ -533,7 +646,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2015-05-10 22:08:17"
+            "time": "2015-09-23 17:48:24"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -633,7 +746,6 @@
             "time": "2015-05-10 22:09:43"
         },
         {
-
             "name": "yiisoft/yii2-swiftmailer",
             "version": "2.0.4",
             "source": {
@@ -845,16 +957,16 @@
         },
         {
             "name": "yiisoft/yii2-debug",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "5c7081b2be71c61d3a50d978b31edc3e0b6f2f97"
+                "reference": "1b302e67521d46feb2413d9d96ca94ed82b39b0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/5c7081b2be71c61d3a50d978b31edc3e0b6f2f97",
-                "reference": "5c7081b2be71c61d3a50d978b31edc3e0b6f2f97",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/1b302e67521d46feb2413d9d96ca94ed82b39b0e",
+                "reference": "1b302e67521d46feb2413d9d96ca94ed82b39b0e",
                 "shasum": ""
             },
             "require": {
@@ -888,7 +1000,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2015-05-10 22:08:56"
+            "time": "2015-08-06 16:14:06"
         },
         {
             "name": "yiisoft/yii2-faker",
