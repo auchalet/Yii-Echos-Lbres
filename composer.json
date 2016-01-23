@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-jui": "^2.0",
-        "githubjeka/yii2-gui-rbac": "*"
+        "githubjeka/yii2-gui-rbac": "*",
+        "FortAwesome/Font-Awesome": "*"
 
     },
     "require-dev": {

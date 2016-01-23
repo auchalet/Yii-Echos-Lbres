@@ -9,9 +9,18 @@ $this->title = 'My Yii Application';
 <header id="head">
         <div class="container">
                 <div class="row">
-                        <h1 class="lead">AWESOME, CUSTOMIZABLE, FREE</h1>
-                        <p class="tagline">PROGRESSUS: free business bootstrap template by <a href="http://www.gettemplate.com/?utm_source=progressus&amp;utm_medium=template&amp;utm_campaign=progressus">GetTemplate</a></p>
-                        <p><a class="btn btn-default btn-lg" role="button">MORE INFO</a> <a class="btn btn-action btn-lg" role="button">DOWNLOAD NOW</a></p>
+                        <h1 class="lead">TRAVAILLER LIBREMENT ENSEMBLE</h1>
+                        <p class="tagline">
+                                Cher ami internaute,
+                        </br>
+                                Nous sommes une dizaine de jeunes, pour la plupart d'anciens étudiants associatifs.</br> à la recherche d'une vie bâtit sur la mise en place d'un avenir basé sur la pérennité.</br>
+                                Motivés par l'idée de regrouper nos projets, nous nous orienterons vers une association de loi 1901.</br>
+                                Pour le moment, nous sommes en phase de construction du site de l'association, afin qu'il soit présentable au moment du lancement de la structure associative.</br>
+                                Le site n'en est qu'un reflet, mais aussi un outil clé, c'est pourquoi nous avons décidé de vous le partager</br> </br> 
+                                Etre de l'univers, nous avons besoin de toi et peut-être as-tu besoin de nous ?</br>
+                                Vous avez besoin de toi, c'est possible...</br>
+                        </p>
+                        <p><a class="btn btn-default btn-lg" role="button" href="about.html" title="A propos">+ D'INFOS</a> <a class="btn btn-action btn-lg" role="button" href="soutenir.html" title="Soutenir l'association">SOUTENIR</a></p>
                 </div>
         </div>
 </header>
@@ -20,47 +29,67 @@ $this->title = 'My Yii Application';
 <!-- Intro -->
 <div class="container text-center">
         <br> <br>
-        <h2 class="thin">The best place to tell people why they are here</h2>
+        <h2 class="thin">Présentation de l'association</h2>
         <p class="text-muted">
-                The difference between involvement and commitment is like an eggs-and-ham breakfast:<br> 
-                the chicken was involved; the pig was committed.
+                Le site est actuellement en construction > délais ?</br>                        
+                Les fondements de l'association Echos-Libres partent du principe que nous avons TOUS des compétences, 
+                plus ou moins selon les domaines d'activités. </br>
+                L'idée étant de rassembler le maximum de compétences, afin de tisser une sorte de toile.</br>
+                Le projet se veut auto-construit, travaillant avec des connaisances libres et partagées.</br>
+                Le projet de site web, le jardin en sont des exemples, mais aussi les balades à la campagne...</br>
+                Informations complémentaire >
+                Histoire de l'asso</br>
+                Coopération, partenariat, financements</br>
+                Lien social</br>
+                <a href="http://www.url">lien framindmap</a>
+
         </p>
 </div>
 <!-- /Intro-->
-
+        
 <!-- Highlights - jumbotron -->
 <div class="jumbotron top-space">
         <div class="container">
-
-                <h3 class="text-center thin">Reasons to use this template</h3>
-
+                
+                <h3 class="text-center thin"><a href="objectifs.html">Objectifs majeurs (prévisionnels)</a></h3>
+                
                 <div class="row">
                         <div class="col-md-3 col-sm-6 highlight">
-                                <div class="h-caption"><h4><i class="fa fa-cogs fa-5"></i>Bootstrap-powered</h4></div>
+                                <div class="h-caption"><h4><i class="fa fa-cogs fa-5"></i>Plateforme de partage</h4></div>
                                 <div class="h-body text-center">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid adipisci aspernatur. Soluta quisquam dignissimos earum quasi voluptate. Amet, dignissimos, tenetur vitae dolor quam iusto assumenda hic reprehenderit?</p>
+                                        <p>Réunir vos projets - similaire à la création d'un blog - diffusion</br>
+                                                Appel à projets - Aides au projets</br>
+                                                Création d'une boite à outils - Tutoriels - boite à idées
+                                                Forum, Owncloud, Mumble, pod Diaspora
+                                                Streaming, VOD, Débats</br></p>
                                 </div>
                         </div>
                         <div class="col-md-3 col-sm-6 highlight">
-                                <div class="h-caption"><h4><i class="fa fa-flash fa-5"></i>Fat-free</h4></div>
+                                <div class="h-caption"><h4><i class="fa fa-flash fa-5"></i>Actions autonomes</h4></div>
                                 <div class="h-body text-center">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, commodi, sequi quis ad fugit omnis cumque a libero error nesciunt molestiae repellat quos perferendis numquam quibusdam rerum repellendus laboriosam reprehenderit! </p>
+                                        <p>Organisation de l'asso en Pôles/Groupes (environnement/permaculture)</br>
+                                                Création de groupes de travail (jardinage en permaculture, auto-constructions, atelier cuisine, vidéo
+                                        </br>
+                                                Tutorat</p>
                                 </div>
                         </div>
                         <div class="col-md-3 col-sm-6 highlight">
-                                <div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>Creative Commons</h4></div>
+                                <div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>Vivre</h4></div>
                                 <div class="h-body text-center">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae, perferendis, perspiciatis nobis voluptate quod illum soluta minima ipsam ratione quia numquam eveniet eum reprehenderit dolorem dicta nesciunt corporis?</p>
+                                        <p>La survie c'est bien, la vie c'est mieux et la vivre encore plus !
+                                                Fabrication d'une bière artisanale, restauration, composteur, éolienne, réalisation d'un court métrage, sont autants de projets réalisables, pour lesquels l'association Echos-Libres se propose de vous soutenirs dans leurs réalisation. Gaming</p>
                                 </div>
                         </div>
                         <div class="col-md-3 col-sm-6 highlight">
-                                <div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>Author's support</h4></div>
+                                <div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>Ethique</h4></div>
                                 <div class="h-body text-center">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, excepturi, maiores, dolorem quasi reprehenderit illo accusamus nulla minima repudiandae quas ducimus reiciendis odio sequi atque temporibus facere corporis eos expedita? </p>
+                                        <p>Notion de vivre ensemble</br>
+                                                Nous essayerons d'utiliser au maximum des outils libres, non privateurs</br>
+                                                Le financement se doit d'être le plus éthique. Adhésion, financement participatif, subvention collectives... Projets de stages, Services civiques</p>
                                 </div>
                         </div>
                 </div> <!-- /row  -->
-
+        
         </div>
 </div>
 <!-- /Highlights -->
@@ -68,43 +97,51 @@ $this->title = 'My Yii Application';
 <!-- container -->
 <div class="container">
 
-        <h2 class="text-center top-space">Frequently Asked Questions</h2>
+        <h2 class="text-center top-space"><a href="soutenir.html">Soutenir le projet</a></h2>
         <br>
 
         <div class="row">
                 <div class="col-sm-6">
-                        <h3>Which code editor would you recommend?</h3>
-                        <p>I'd highly recommend you <a href="http://www.sublimetext.com/">Sublime Text</a> - a free to try text editor which I'm using daily. Awesome tool!</p>
+                        <h3>Nous accompagner dans nos débuts !</h3>
+                        <p>Accès au Forum <a href="http://www.forumassoel.com/">Forum EL</a> Accès OwnCloud, groupes de travail, CR réuninons, events, lancement de l'asso ! trouver un local
                 </div>
                 <div class="col-sm-6">
-                        <h3>Nice header. Where do I find more images like that one?</h3>
+                        <h3>Proposer des concepts</h3>
                         <p>
-                                Well, there are thousands of stock art galleries, but personally, 
-                                I prefer to use photos from these sites: <a href="http://unsplash.com">Unsplash.com</a> 
-                                and <a href="http://www.flickr.com/creativecommons/by-2.0/tags/">Flickr - Creative Commons</a></p>
+                                Partagez vos sources libres, des projets similaires, tout types de solutions en adéquation avec les valeurs que vous portez.
+                                </p>
                 </div>
         </div> <!-- /row -->
 
         <div class="row">
                 <div class="col-sm-6">
-                        <h3>Can I use it to build a site for my client?</h3>
+                        <h3>Votre avis nous intéresse</h3>
                         <p>
-                                Yes, you can. You may use this template for any purpose, just don't forget about the <a href="http://creativecommons.org/licenses/by/3.0/">license</a>, 
-                                which says: "You must give appropriate credit", i.e. you must provide the name of the creator and a link to the original template in your work. 
+                                Yes, you can! Donnez nous vos appréciations, n'hésitez pas à nous juger !ut the <a href="http://votreavis">votreav</a>, 
+                                
                         </p>
                 </div>
                 <div class="col-sm-6">
-                        <h3>Can you customize this template for me?</h3>
-                        <p>Yes, I can. Please drop me a line to sergey-at-pozhilov.com and describe your needs in details. Please note, my services are not cheap.</p>
+                        <h3>Promouvoir les actions solidaires au quotidien :)</h3>
+                        <p>
+                                Sites de dons, de partages, récupérations, recyclage des déchets organiques, ...<a href="http://actions">actions</a>, 
+                                
+                        </p>
                 </div>
         </div> <!-- /row -->
 
         <div class="jumbotron top-space">
-                <h4>Dicta, nostrum nemo soluta sapiente sit dolor quae voluptas quidem doloribus recusandae facere magni ullam suscipit sunt atque rerum eaque iusto facilis esse nam veniam incidunt officia perspiciatis at voluptatibus. Libero, aliquid illum possimus numquam fuga.</h4>
-        <p class="text-right"><a class="btn btn-primary btn-large">Learn more »</a></p>
+                <h4>input pseudo + mail</h4>
+
+<div class="input-group input-group-lg">
+<span class="input-group-addon" id="sizing-addon1">@</span>
+<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1">
+</div>
+
+        <p class="text-right"><a class="btn btn-primary btn-large">Envoyer »</a></p>
         </div>
 
-</div>	<!-- /container -->
+</div>  <!-- /container -->
 
 <!-- Social links. @TODO: replace by link/instructions in template -->
 <section id="social">
@@ -124,73 +161,3 @@ $this->title = 'My Yii Application';
 <!-- /social links -->
 
 
-<footer id="footer" class="top-space">
-
-        <div class="footer1">
-                <div class="container">
-                        <div class="row">
-
-                                <div class="col-md-3 widget">
-                                        <h3 class="widget-title">Contact</h3>
-                                        <div class="widget-body">
-                                                <p>+234 23 9873237<br>
-                                                        <a href="mailto:#">some.email@somewhere.com</a><br>
-                                                        <br>
-                                                        234 Hidden Pond Road, Ashland City, TN 37015
-                                                </p>	
-                                        </div>
-                                </div>
-
-                                <div class="col-md-3 widget">
-                                        <h3 class="widget-title">Follow me</h3>
-                                        <div class="widget-body">
-                                                <p class="follow-me-icons">
-                                                        <a href=""><i class="fa fa-twitter fa-2"></i></a>
-                                                        <a href=""><i class="fa fa-dribbble fa-2"></i></a>
-                                                        <a href=""><i class="fa fa-github fa-2"></i></a>
-                                                        <a href=""><i class="fa fa-facebook fa-2"></i></a>
-                                                </p>	
-                                        </div>
-                                </div>
-
-                                <div class="col-md-6 widget">
-                                        <h3 class="widget-title">Text widget</h3>
-                                        <div class="widget-body">
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
-                                                <p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
-                                        </div>
-                                </div>
-
-                        </div> <!-- /row of widgets -->
-                </div>
-        </div>
-
-        <div class="footer2">
-                <div class="container">
-                        <div class="row">
-
-                                <div class="col-md-6 widget">
-                                        <div class="widget-body">
-                                                <p class="simplenav">
-                                                        <a href="#">Home</a> | 
-                                                        <a href="about.html">About</a> |
-                                                        <a href="sidebar-right.html">Sidebar</a> |
-                                                        <a href="contact.html">Contact</a> |
-                                                        <b><a href="signup.html">Sign up</a></b>
-                                                </p>
-                                        </div>
-                                </div>
-
-                                <div class="col-md-6 widget">
-                                        <div class="widget-body">
-                                                <p class="text-right">
-                                                        Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
-                                                </p>
-                                        </div>
-                                </div>
-
-                        </div> <!-- /row of widgets -->
-                </div>
-        </div>
-
-</footer>	

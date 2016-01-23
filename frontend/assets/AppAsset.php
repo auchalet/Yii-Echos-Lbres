@@ -18,8 +18,8 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/main.css',
-        'css/bootstrap-theme.css'
+        'css/bootstrap-theme.css',
+        'css/didou.css',
     ];
     public $js = [
         'js/main.js',
@@ -28,5 +28,6 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'frontend\assets\FontAwesomeAsset'
     ];
 }
