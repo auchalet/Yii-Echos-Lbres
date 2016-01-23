@@ -2,7 +2,11 @@
 
 namespace backend\controllers;
 
-class AssoController extends \yii\web\Controller
+use Yii;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+
+class AssoController extends Controller
 {
     public function actionIndex()
     {

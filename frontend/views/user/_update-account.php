@@ -14,8 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'pseudo')->textInput(['value' => $account->pseudo]) ?>
-        
+       
         <!-- Voir pour champ Age virtuel // Style Steam ? // Champ text ? // DropDown ? // DatePicker ? -->
         <?= $form->field($model, 'age')->textInput(['value' => $account->age]) ?>
         <?= $form->field($model, 'favorite_category') ?>

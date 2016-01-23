@@ -2,7 +2,11 @@
 
 namespace backend\controllers;
 
-class ProjectController extends \yii\web\Controller
+use Yii;
+use yii\filters\AccessControl;
+use yii\web\Controller;
+
+class ProjectController extends Controller
 {
     public function actionIndex()
     {

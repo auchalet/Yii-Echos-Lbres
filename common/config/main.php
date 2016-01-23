@@ -26,4 +26,18 @@ return [
         ],        
 
     ],
+    'modules' => [
+      'rbac' => [
+        'class' => 'githubjeka\rbac\Module',
+        'as access' => [ // if you need to set access
+          'class' => 'yii\filters\AccessControl',
+          'rules' => [
+              [
+                  'allow' => true,
+                  'roles' => ['@'] // all auth users 
+              ],
+          ]
+        ]
+      ],
+    ],    
 ];

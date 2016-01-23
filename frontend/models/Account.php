@@ -10,7 +10,6 @@ use common\models\User;
  * This is the model class for table "account".
  *
  * @property integer $id_account
- * @property string $pseudo
  * @property string $sex
  * @property string $age
  * @property integer $favorite_category
@@ -42,11 +41,11 @@ class Account extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pseudo', 'user_id'], 'required'],
+            [['user_id'], 'required'],
             [['age', 'active_avatar'], 'integer'],
             [['favorite_category', 'newsletter', 'user_id', 'avatar'], 'integer'],
             [['past', 'present', 'future', 'why_register', 'skills', 'interests', 'other'], 'string'],
-            [['pseudo', 'sex'], 'string', 'max' => 128]
+            [['sex'], 'string', 'max' => 128]
         ];
     }
 
@@ -57,7 +56,6 @@ class Account extends \yii\db\ActiveRecord
     {
         return [
             'id_account' => 'Id Account',
-            'pseudo' => 'Pseudo',
             'sex' => 'Sex',
             'age' => 'Age virtuel',
             'favorite_category' => 'Rubrique favorite',

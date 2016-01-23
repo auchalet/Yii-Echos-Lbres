@@ -16,7 +16,6 @@ $this->registerCssFile('@web/css/signin.css');
 
 
 
-
 <div id="preloader">
     <div id="status">&nbsp;</div>
 </div>
