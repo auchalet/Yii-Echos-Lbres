@@ -41,7 +41,7 @@ AppAsset::register($this);
     <?php
     NavBar::begin([
         'options' => [
-            'class' => 'navbar navbar-inverse navbar-fixed-top headroom',
+            'class' => 'navbar navbar-inverse navbar-fixed-top nav-container',
         ],
     ]);
 
@@ -82,6 +82,10 @@ AppAsset::register($this);
     $menuItems[] =  
         [
             'label' => 'Forum',
+            'url' => ['/forum/default/index'],
+            'linkOptions' => [
+                'target' => '_blank',
+            ],
             'items' => [
                 ['label' => 'Liste des membres', 'url' => ['/site/index']],
                 ['label' => 'Charte du forum', 'url' => ['/site/index']],

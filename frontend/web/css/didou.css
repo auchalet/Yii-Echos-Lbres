@@ -89,8 +89,17 @@ img.pull-left { margin-right: 10px; }
 .brand {
 	font-size: 80px !important;
 	margin-top: -10px;
+        position: fixed;
 }
 
 .brand:hover {
 	text-decoration: none;
+}
+
+.nav-container > .container {
+    width: 100%;
+}
+
+#w1 > li {
+    font-size: 1.5em;
 }
