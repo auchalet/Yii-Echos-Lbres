@@ -15,9 +15,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <h1>Index du forum</h1>
 
+
 <h2>Categories</h2>
 
-<?php if(!Yii::$app->user->isGuest): ?>
+<?php if(Yii::$app->user->can('adminForum')): ?>
 
 <a class="btn-primary btn" href="<?= Url::to(['/category/create']); ?>">Créer une nouvelle catégorie</a>
 

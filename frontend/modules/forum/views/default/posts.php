@@ -37,12 +37,13 @@ $id_topic=$this->context->actionParams['id_topic'];
             
             <label class="badge">Votes : <span id="score_<?= $val['id'] ?>"><?= $val['score'] ?></span></label>
             
+            <?php if(Yii::$app->user->can('vote')): ?>
             <div class="btn-group">
                 <span class="btn btn-default" onclick="vote('plus_<?= $val['id'] ?>');">+</span>                     
                 <span class="btn btn-default" onclick="vote('moins_<?= $val['id'] ?>');">-</span>                     
             </div>
-
-
+            <?php endif; ?>
+           
 			
             
             <?php if($val['id_user']==Yii::$app->user->id): ?>

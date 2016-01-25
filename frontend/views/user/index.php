@@ -2,6 +2,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
+use common\rbac\OwnRule;
 
 /* @var $this yii\web\View */
 $this->title = 'Echos-Libres - Profil de '.$user->username;
@@ -25,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </ul>
     </div>
     
+    <?php if(Yii::$app->user->getId() === $user->id): ?>
     <div id="userSiteAttributes">
         <ul class="" style="display:inline;">            
             <li>Email : <?= $user->email ?></li>
@@ -32,18 +34,24 @@ $this->params['breadcrumbs'][] = $this->title;
             <li><a href="<?= Url::to(['user/update-logs']) ?>">Modifier</a>
         </ul>
     </div>
+    <?php endif; ?>
+    
 </div>
 
 <div class="core-profil">
     
+    <!-- Créer une règle pour que l'admin et l'utilisateur seuls puissent modifier le profil -->
+    <?php if(Yii::$app->user->getId() === $user->id): ?>
     <a href="<?= Url::to(['user/update-account']) ?>">Modifier le profil</a>
-    
+    <?php endif; ?>
     
     <div id="avatar">
 
         <?= Html::img($avatar, ['id' => 'img-avatar', 'label'=>'Image', 'format'=>'raw']) ?>
         
+        <?php if(Yii::$app->user->can('updateOwnUser', ['user' => $user->id])): ?>
         <button value="<?= Url::to(['user/change-avatar']) ?>" class="btn btn-primary" id="change-avatar">Ajouter un avatar <br> (compatible Gravatar)</a>
+        <?php endif; ?>
     </div>
     
 

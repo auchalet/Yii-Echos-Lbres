@@ -16,7 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <h2>Topics associés</h2>
 
+<?php if(Yii::$app->user->can('createTopic')): ?>
 <p class="text-ri"><a href="<?= Url::to(['/topic/new', 'id_category'=>$id_category]) ?>">Créer un nouveau sujet</a></p>
+<?php endif; ?>
 
 
 <div class="tab-content">

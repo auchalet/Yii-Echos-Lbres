@@ -44,7 +44,7 @@ $this->registerCssFile('@web/css/signin.css');
                         <div class="form-group">
                             <a href="#" class="pull-right label-forgot">Forgot email?</a>
                             <label for="inputUsernameEmail">Username or email</label>
-                            <input name="LoginForm[username]" type="text" id="inputUsernameEmail loginform-username" class="form-control">
+                            <input name="LoginForm[email]" type="text" id="inputUsernameEmail loginform-username" class="form-control">
                         </div>
                         <div class="form-group">
                             <a href="#" class="pull-right label-forgot">Forgot password?</a>

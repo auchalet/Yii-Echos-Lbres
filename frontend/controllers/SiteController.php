@@ -155,6 +155,11 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
+                
+                $auth = Yii::$app->authManager;
+                $userRole = $auth->getRole('user');
+                $auth->assign($userRole, $user->getId());
+                
                 Yii::$app->session->setFlash('success', 'Un mail a été envoyé à '.$user->email);                
                 return $this->goHome();
 

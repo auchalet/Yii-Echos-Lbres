@@ -46,8 +46,14 @@ AppAsset::register($this);
             ['label' => 'Evenements', 'url' => ['/event/index']],
             ['label' => 'Projets de la communauté', 'url' => ['/project/index']],
             ['label' => 'Tchat', 'url' => ['/tchat/index']],        
+                   
 
-        ];        
+        ];   
+        
+        if(Yii::$app->user->can('manageRbac')) {
+            $menuItems[] = ['label' => 'Admin', 'url' => ['/rbac']];
+        }
+        
         $menuItems[] = [
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],

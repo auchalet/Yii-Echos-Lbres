@@ -71,7 +71,7 @@ class DefaultController extends \yii\web\Controller
     	//GetAll avec Pagination
         $posts=$postRepo->getAll("id_topic=$id_topic", [
         		'orderBy'=>[
-        				'createdAt'=>SORT_ASC
+        				'createdAt'=>SORT_DESC
         				],
         		'offset'=>$pages->offset,
         		'limit'=>$pages->limit
