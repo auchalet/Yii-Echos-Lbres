@@ -1,6 +1,7 @@
 <?php
 /* @var $this yii\web\View */
-
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 ?>
 
@@ -36,8 +37,8 @@
             <td><?= $v->status ?></td>
             <td>
                 <ul class="nav nav-tabs">
-                    <li><a href="index.php?r=user/profile" class="glyphicon glyphicon-eye-open"></a></li>
-                    <li><a href="index.php?r=user/update"  class="glyphicon glyphicon-pencil"></a></li>
+                    <li><a href="<?= Url::to('profile', ['id_user' => $v->id]) ?>" class="glyphicon glyphicon-eye-open"></a></li>
+                    <li><a href="/index.php?r=user/update"  class="glyphicon glyphicon-pencil"></a></li>
                     <li><a href="index.php?r=user/disable"  class="glyphicon glyphicon-off"></a></li>
                 </ul>
             </td>

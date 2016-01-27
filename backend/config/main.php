@@ -15,8 +15,15 @@ return [
     'components' => [
         'urlManager' => [
             'showScriptName' => false,
-            'enablePrettyUrl' => false
+            'enablePrettyUrl' => true
         ],
+        'urlManagerFrontEnd' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => 'frontend/web',
+            'showScriptName' => false,
+            'enablePrettyUrl' => true,
+            
+        ],        
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

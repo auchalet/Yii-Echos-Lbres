@@ -32,9 +32,15 @@ class UserController extends Controller
         
     }
     
-    public function actionProfile()
+    public function actionProfile($id_user)
     {
-        return $this->render('profile');
+        $user = User::findIdentity($id_user);
+        
+        
+        //Dans l'idéal redirige vers la page profil du front -- Ne marche pas
+        return $this->renderPartial('@frontend/user/profile', [
+            'user' => $user
+        ]);
     }
     
     
