@@ -32,6 +32,8 @@ class UserController extends Controller
         
     }
     
+    
+    /* Non utilisée : lien vers profil en frontend
     public function actionProfile($id_user)
     {
         $user = User::findIdentity($id_user);
@@ -42,17 +44,24 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+     * 
+     */
     
     
-    public function actionDisable()
+    public function actionDisable($id_user)
     {
         return $this->redirect(['list']);
     }
     
     
-    public function actionUpdate()
+    public function actionUpdate($id_user)
     {
-        return $this->render('update');
+        
+        $user = User::findIdentity($id_user);
+               
+        return $this->renderAjax('update', [
+            'user' => $user,
+        ]);
     }
 
 }

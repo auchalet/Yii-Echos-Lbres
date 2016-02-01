@@ -5,6 +5,7 @@
 /* @var $model \common\models\LoginForm */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
@@ -39,11 +40,11 @@ $this->registerCssFile('@web/css/signin.css');
             <div class="col-md-4 col-md-offset-4">
                 <div class="account-box">
 
-                    <form role="form" id="login-form" method="POST" action="/index.php?r=site/login">
+                    <form role="form" id="login-form" method="POST" action="<?= Url::to(['site/login']) ?>">
                         <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />                        
                         <div class="form-group">
                             <a href="#" class="pull-right label-forgot">Forgot email?</a>
-                            <label for="inputUsernameEmail">Username or email</label>
+                            <label for="inputUsernameEmail">Email</label>
                             <input name="LoginForm[email]" type="text" id="inputUsernameEmail loginform-username" class="form-control">
                         </div>
                         <div class="form-group">

@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= Html::img($avatar, ['id' => 'img-avatar', 'label'=>'Image', 'format'=>'raw']) ?>
         
-        <?php if(Yii::$app->user->can('updateOwnUser', ['user' => $user->id])): ?>
+        <?php if(Yii::$app->user->getId() === $user->id): ?>
         <button value="<?= Url::to(['user/change-avatar']) ?>" class="btn btn-primary" id="change-avatar">Ajouter un avatar <br> (compatible Gravatar)</a>
         <?php endif; ?>
     </div>

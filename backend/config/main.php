@@ -13,15 +13,19 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        //URL backend
         'urlManager' => [
             'showScriptName' => false,
-            'enablePrettyUrl' => true
+            'enablePrettyUrl' => false,
+            'hostInfo' => 'http://admin.echos.local'
         ],
+        //URL frontend
         'urlManagerFrontEnd' => [
             'class' => 'yii\web\urlManager',
-            'baseUrl' => 'frontend/web',
+            'hostInfo' => 'http://echos.local/',
+            'baseUrl' => 'http://echos.local/index.php?r=',
             'showScriptName' => false,
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             
         ],        
         'user' => [

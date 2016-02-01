@@ -2,6 +2,8 @@
 /* @var $this yii\web\View */
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\bootstrap\Modal;
+
 
 ?>
 
@@ -37,9 +39,28 @@ use yii\helpers\Url;
             <td><?= $v->status ?></td>
             <td>
                 <ul class="nav nav-tabs">
-                    <li><a href="<?= Url::to('profile', ['id_user' => $v->id]) ?>" class="glyphicon glyphicon-eye-open"></a></li>
-                    <li><a href="/index.php?r=user/update"  class="glyphicon glyphicon-pencil"></a></li>
-                    <li><a href="index.php?r=user/disable"  class="glyphicon glyphicon-off"></a></li>
+                    <!--<li><a href="<?= Url::to('profile', ['id_user' => $v->id]); ?>" class="glyphicon glyphicon-eye-open"></a></li>-->
+                    
+                    <!-- Lien vers profil en frontend // Non optimisé car ne marche pas si rewrite URL // Voir avec createUrl() -->
+                    
+                    <li><a href="<?= Yii::$app->urlManagerFrontEnd->baseUrl.'user/index&id_user='.$v->id ?>" class="glyphicon glyphicon-eye-open" target="_blank"></a></li>                                                       
+                    <li><a href="<?= Url::to(['user/update', 'id_user'=>$v->id]) ?>"  class="glyphicon glyphicon-pencil" id="update-user"></a></li>
+                    
+                    <!-- Popup en JS pour modifier l'user -->
+                    <?php
+
+                        Modal::begin([
+                            'id' => 'modal-user',
+
+                        ]);
+
+                        echo '<div id="user-popup"></div>';
+
+                        Modal::end();
+
+                    ?>                       
+                    
+                    <li><a href="<?= Url::to(['user/disable', 'id_user'=>$v->id]) ?>"  class="glyphicon glyphicon-off"></a></li>
                 </ul>
             </td>
             
