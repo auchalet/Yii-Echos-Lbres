@@ -23,9 +23,12 @@ return [
         'urlManagerFrontEnd' => [
             'class' => 'yii\web\urlManager',
             'hostInfo' => 'http://echos.local/',
-            'baseUrl' => 'http://echos.local/index.php?r=',
+            'baseUrl' => 'http://echos.local/',
             'showScriptName' => false,
-            'enablePrettyUrl' => false,
+            'enablePrettyUrl' => true,
+            'rules' => [
+                'profil/<username:\w+>' => 'user/index'
+            ]
             
         ],        
         'user' => [

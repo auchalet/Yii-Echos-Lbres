@@ -21,8 +21,17 @@ return [
             'showScriptName' => false,
             'enablePrettyUrl' => false,
             'rules' => [
+                //Forum
                 'forum/topic/<id_topic:\d+>/posts' => 'forum/default/posts',
-                'forum/category/<id_category:\d+>/topics' => 'forum/default/topics'
+                'forum/category/<id_category:\d+>/topics' => 'forum/default/topics',
+                
+                //User
+                'profil/<username:\w+>' => '/user/index',
+                'profil' => '/user/index',
+                
+                //Site
+                '/' => 'site/index',
+                'contact' => 'site/contact'
             ]
         ],        
         'user' => [

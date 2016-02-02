@@ -43,8 +43,8 @@ use yii\bootstrap\Modal;
                     
                     <!-- Lien vers profil en frontend // Non optimisé car ne marche pas si rewrite URL // Voir avec createUrl() -->
                     
-                    <li><a href="<?= Yii::$app->urlManagerFrontEnd->baseUrl.'user/index&id_user='.$v->id ?>" class="glyphicon glyphicon-eye-open" target="_blank"></a></li>                                                       
-                    <li><a href="<?= Url::to(['user/update', 'id_user'=>$v->id]) ?>"  class="glyphicon glyphicon-pencil" id="update-user"></a></li>
+                    <li><a href="<?= Yii::$app->urlManagerFrontEnd->createUrl(['user/index', 'username' => $v->username]) ?>" class="glyphicon glyphicon-eye-open" target="_blank"></a></li>                                                       
+                    <li><button class="btn btn-link update-user" value="<?= Url::to(['user/update', 'id_user'=>$v->id]) ?>"><a class="glyphicon glyphicon-pencil"></a></button></li>
                     
                     <!-- Popup en JS pour modifier l'user -->
                     <?php

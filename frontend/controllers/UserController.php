@@ -22,13 +22,13 @@ use common\models\UploadFile;
 
 class UserController extends \yii\web\Controller
 {
-    public function actionIndex($id_user = null)
+    public function actionIndex($username = null)
     {
-        if($id_user == NULL) {
+        if($username == NULL) {
             $user = Yii::$app->user->identity;
         }
         else {
-            $user = User::findIdentity($id_user);
+            $user = User::findByUsername($username);
         }
 
         $accountUser = $user->findAccount();

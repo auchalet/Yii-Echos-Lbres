@@ -1,7 +1,9 @@
 $(function() {
     
+    
     //Clic sur change-avatar // Affichage du popup modal
-    $('#change-avatar').on('click', function() {
+    $('#change-avatar').on('click', function(e) {
+        e.preventDefault();
         $('#modal').modal('show')
                    .find('#picture-popup')
                    .load($(this).attr('value'));
