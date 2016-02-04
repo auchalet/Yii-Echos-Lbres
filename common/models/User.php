@@ -56,6 +56,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['email', 'email'],
             ['status', 'default', 'value' => self::STATUS_DELETED],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            [['email'], 'required']
             
         ];
     }
@@ -151,7 +152,7 @@ class User extends ActiveRecord implements IdentityInterface
         $expire = Yii::$app->params['user.passwordResetTokenExpire'];
         return $timestamp + $expire >= time();
     }
-
+    
     /**
      * @inheritdoc
      */
