@@ -34,7 +34,7 @@ use yii\bootstrap\Modal;
         <?php foreach($users as $k => $v): ?>
         <tr>
             <td><?= $k+1 ?></td>
-            <td><?= $v->username ?></td>
+            <td><?= $v->username ?> <?= (($v->superadmin && isset(Yii::$app->authManager->getRolesByUser(Yii::$app->user->id)['admin'])) ? '[Admin]':'') ?></td>
             <td><?= $v->email ?></td>
             <td><?= $v->status ?></td>
             <td>

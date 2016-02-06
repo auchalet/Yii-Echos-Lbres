@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
-use yii\helpers\ArrayHelper;
 
 
 
@@ -19,10 +18,10 @@ use yii\helpers\ArrayHelper;
         <!-- Voir pour champ Age virtuel // Style Steam ? // Champ text ? // DropDown ? // DatePicker ? -->
         <?= $form->field($user, 'username')->textInput(['value' => $user->username]) ?>
         <?= $form->field($user, 'email')->textInput(['value' => $user->email]) ?>
-        <?= $form->field($user, 'status')->dropDownList(['10' => 'En ligne', '0' => 'Hors ligne'], ['value' => $user->status]) ?>
+        <?= $form->field($user, 'status')->dropDownList([10 => 'En ligne', 0 => 'Hors ligne'], ['value' => $user->status]) ?>
         
-    <?php if(Yii::$app->authManager->getRolesByUser(Yii::$app->user->id)['admin']): ?>
-        <?= $form->field($user, 'superadmin')->dropDownList(['0' => 'Non', '1' => 'Oui'], ['value' => $user->superadmin]) ?>         
+    <?php if(isset(Yii::$app->authManager->getRolesByUser(Yii::$app->user->id)['admin'])): ?>
+        <?= $form->field($user, 'superadmin')->dropDownList([0 => 'Non', 1=> 'Oui'], ['value' => $user->superadmin]) ?>         
     <?php endif; ?>
     
         <div class="form-group">

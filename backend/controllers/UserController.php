@@ -56,25 +56,24 @@ class UserController extends Controller
     
     public function actionUpdate($id_user)
     {
-        $model = new User;
-        $user = User::findIdentity($id_user);
-        $users = User::getAll();       
         
-        if($model->load(Yii::$app->request->post()) && $model->validate()) {
-            var_dump($model);die;
-            if($model->save()) {
+        $model = new User;
+        
+        $user = User::findId($id_user);
+        
+        
+        if($user->load(Yii::$app->request->post()) && $user->validate()) {
+            
+            if($user->save()) {
                 Yii::$app->getSession()->setFlash('success', 'Modification réussie');
                 return $this->redirect(['list']);
-            }
-            
-            
+            }   
 
         }
         
         return $this->renderAjax('update', [
             'user' => $user,
-            'model' => $model,
-            'users' => $users
+            'model' => $model
         ]);
     }
 

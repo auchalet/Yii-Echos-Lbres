@@ -23,6 +23,7 @@ use frontend\models\Member;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property integer $superadmin
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -53,20 +54,33 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            ['username', 'string'],
             ['email', 'email'],
+            ['superadmin', 'integer'],
             ['status', 'default', 'value' => self::STATUS_DELETED],
+            
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-            [['email'], 'required']
+            [['username', 'email'], 'required']
             
         ];
     }
 
     /**
+     * Retourne objet User pour un utilisateur Activé
      * @inheritdoc
      */
     public static function findIdentity($id)
     {
         return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+    }
+    
+    
+    /**
+     * Retourne objet User pour un utilisateur activé et non activé
+     */
+    public static function findId($id)
+    {
+        return static::findOne(['id' => $id]);
     }
     
     public static function getAll()
@@ -247,6 +261,19 @@ class User extends ActiveRecord implements IdentityInterface
     public function findAccount()
     {
         return $this->hasOne(Account::classname(), ['user_id' => 'id'])->one();
+    }
+    
+    public function updateUser($user)
+    {
+        var_dump($this, $user);die;
+        
+        
+        
+        if($this->save()) {
+            return true;
+        }
+        
+        return false;
     }
     
    
