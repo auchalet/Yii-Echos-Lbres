@@ -50,7 +50,26 @@ class UserController extends Controller
     
     public function actionDisable($id_user)
     {
-        return $this->redirect(['list']);
+        $current = Yii::$app->user->identity;
+        $user = User::findId($id_user);
+        
+        if($user->status === 10) {
+            $user->status = 0;
+        } elseif ($user->status === 0) {
+            $user->status = 10;
+        } else {
+            return false;
+        }
+        
+        if($user->save()) {
+            
+            //Gérer le cas où l'User désactivé est l'user courant : ajouter confirm en JS sur vue + redirect sur Login
+            if(!Yii::$app->user->identity) {
+                return $this->redirect(['/site/login']);
+            }
+            
+            return $this->redirect(['list']);
+        }
     }
     
     
