@@ -58,6 +58,7 @@ class UserController extends Controller
         } elseif ($user->status === 0) {
             $user->status = 10;
         } else {
+            var_dump($user->status);die;
             return false;
         }
         

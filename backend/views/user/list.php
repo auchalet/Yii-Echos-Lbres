@@ -60,7 +60,7 @@ use yii\bootstrap\Modal;
 
                     ?>                       
                     
-                    <li><a href="<?= Url::to(['user/disable', 'id_user'=>$v->id]) ?>"  class="glyphicon glyphicon-off"></a></li>
+                    <li><a href="<?= Url::to(['user/disable', 'id_user'=>$v->id]) ?>"  class="glyphicon glyphicon-off disable-user"></a></li>
                 </ul>
             </td>
             
@@ -68,3 +68,18 @@ use yii\bootstrap\Modal;
         <?php endforeach; ?>
     </tbody>
 </table>
+  
+
+  
+<?php
+    $js = '
+         $(".disable-user").click(function(){
+            
+            return confirm("Désactiver ?");
+        });
+        
+
+        ';
+    $this->registerJs($js, static::POS_END);
+
+?>
