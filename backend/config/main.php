@@ -22,8 +22,8 @@ return [
         //URL frontend
         'urlManagerFrontEnd' => [
             'class' => 'yii\web\urlManager',
-            'hostInfo' => 'http://echos.local/',
-            'baseUrl' => 'http://echos.local/',
+            'hostInfo' => 'http://echos-libres.local/',
+            'baseUrl' => 'http://echos-libres.dev/',
             'showScriptName' => false,
             'enablePrettyUrl' => true,
             'rules' => [

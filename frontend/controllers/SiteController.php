@@ -264,4 +264,8 @@ class SiteController extends Controller
         ]);
 
     }
+    
+    public function actionNewsletter(){
+        var_dump('coucou'); die;
+    }
 }

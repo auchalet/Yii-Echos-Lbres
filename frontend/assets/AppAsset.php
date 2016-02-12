@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/bootstrap-theme.css',
         'css/didou.css',
+        'css/fonts.css'
     ];
     public $js = [
         'js/main.js',
