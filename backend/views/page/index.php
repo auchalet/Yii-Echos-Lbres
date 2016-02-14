@@ -6,18 +6,26 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Site Pages';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Catégories de pages';
+$this->params['breadcrumbs'][] = ['label' => 'Accueil', 'url' => ['/site/index']];
+$this->params['breadcrumbs'][] = ['label' => 'Catégories de pages'];
+
 ?>
 <div class="site-page-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Site Page', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php 
+            if(Yii::$app->user->can('admin')) {
+                echo Html::a('Créer une catégorie', ['create-category'], ['class' => 'btn btn-success']);
+            }
+        ?>
     </p>
 
-    <?= GridView::widget([
+    <?= 
+        'Pages'
+        /*GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
@@ -38,6 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]);*/ ?>
 
 </div>

@@ -63,6 +63,17 @@ class SiteCategory extends \yii\db\ActiveRecord
         ];
     }
 
+    
+    public static function getAll() {
+        return static::find()->all();
+    }
+    
+    
+    public static function getById($id) {
+        return static::findOne(['id' => $id]);
+    }
+    
+    
     /**
      * @return \yii\db\ActiveQuery
      */

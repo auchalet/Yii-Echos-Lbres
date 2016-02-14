@@ -1,6 +1,17 @@
+* {
+    font-family: 'Deja_Vu', serif;
+}
+
 html,
 body {
     height: 100%;
+    background-color: #F5F4F1;
+    max-width: 100%
+}
+
+#w0, #w1, .sidebar {
+    background-color: #5C554B;
+    color: #d9d4cc;
 }
 
 .wrap {
@@ -82,10 +93,29 @@ a.desc:after {
     color: #999;
 }
 
+a {
+    color: white;
+}
+
+
 .error-summary {
     color: #a94442;
     background: #fdf7f7;
     border-left: 3px solid #eed3d7;
     padding: 10px 20px;
     margin: 0 0 15px 0;
+}
+
+.sidebar {
+    height:100%;
+    color:#d9d4cc;
+    position: fixed;
+    top: 50px;
+    bottom: 0px;
+    padding:20px;
+}
+
+.open-sidebar {
+    //float:right;
+    cursor: pointer;
 }

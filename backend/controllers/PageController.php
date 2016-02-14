@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\SiteCategory;
 
 /**
  * PageController implements the CRUD actions for SitePage model.
@@ -27,14 +28,15 @@ class PageController extends Controller
     }
 
     /**
-     * Lists all SitePage models.
+     * Liste les catégories de pages
      * @return mixed
      */
     public function actionIndex()
-    {
+    {        
         $dataProvider = new ActiveDataProvider([
-            'query' => SitePage::find(),
+            'query' => SiteCategory::getAll(),
         ]);
+        
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
@@ -58,14 +60,33 @@ class PageController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreatePage()
     {
         $model = new SitePage();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('create', [
+            return $this->render('create-page', [
+                'model' => $model,
+            ]);
+        }
+    }
+    
+    
+    /**
+     * Creates a new SitePage model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreateCategory()
+    {
+        $model = new SiteCategory();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
+        } else {
+            return $this->render('create-category', [
                 'model' => $model,
             ]);
         }
