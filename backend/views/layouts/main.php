@@ -42,7 +42,7 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Utilisateurs', 'url' => ['/user/index']],
             ['label' => 'Forum', 'url' => ['/forum/index']],
-            ['label' => 'Echos-Libres', 'url' => ['/asso/index']],
+            ['label' => 'Pages du site', 'url' => ['/page/index']],
             ['label' => 'Evenements', 'url' => ['/event/index']],
             ['label' => 'Projets de la communauté', 'url' => ['/project/index']],
             ['label' => 'Tchat', 'url' => ['/tchat/index']],        
