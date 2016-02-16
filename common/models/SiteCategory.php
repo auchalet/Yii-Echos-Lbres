@@ -79,6 +79,6 @@ class SiteCategory extends \yii\db\ActiveRecord
      */
     public function getSitePages()
     {
-        return $this->hasMany(SitePage::className(), ['category_id' => 'id']);
+        return $this->hasMany(SitePage::className(), ['category_id' => 'id'])->all();
     }
 }

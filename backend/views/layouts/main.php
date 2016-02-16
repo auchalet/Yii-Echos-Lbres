@@ -15,7 +15,7 @@ AppAsset::register($this);
 $item_categ = array();
 $page_categories = SiteCategory::getAll();
 foreach ($page_categories as $k=>$v){
-    array_push($item_categ, ['label' => $v['title'], 'url' => ['/page/index', 'id_category' => $v['id']]]);
+    array_push($item_categ, ['label' => $v['title'], 'url' => ["page/list-pages", 'id_category' => $v['id']]]);
 }
 
 //var_dump($item_categ); die;

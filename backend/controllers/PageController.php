@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\SiteCategory;
+use common\models\User;
 
 /**
  * PageController implements the CRUD actions for SitePage model.
@@ -31,15 +32,33 @@ class PageController extends Controller
      * Liste les catégories de pages
      * @return mixed
      */
-    public function actionIndex()
+    public function actionListPages($id_category)
     {        
-        $dataProvider = new ActiveDataProvider([
-            'query' => SiteCategory::getAll(),
-        ]);
+        $category = SiteCategory::getById($id_category);
+        $pages = $category->getSitePages();
+
+        if($pages) {
+            foreach($pages as $v) {
+                $users[] = User::findId($v->user_id);
+
+                //Récupération binaire des statuts 1 = OK ; 0 = !OK
+                $status_bin = str_split((string)$v->status);
+                $status[] = $status_bin;
+
+            }
+        } else {
+            $status = null;
+            $users = null;
+        }
+
+       
         
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
+        return $this->render('list-pages', [
+            'category' => $category,
+            'pages' => $pages,
+            'status_pages' => $status,
+            'users' => $users
         ]);
     }
 
@@ -48,9 +67,9 @@ class PageController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionViewPage($id)
     {
-        return $this->render('view', [
+        return $this->render('view-page', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -60,7 +79,7 @@ class PageController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreatePage()
+    public function actionCreatePage($id_category)
     {
         $model = new SitePage();
 
@@ -73,24 +92,6 @@ class PageController extends Controller
         }
     }
     
-    
-    /**
-     * Creates a new SitePage model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreateCategory()
-    {
-        $model = new SiteCategory();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        } else {
-            return $this->render('create-category', [
-                'model' => $model,
-            ]);
-        }
-    }
 
     /**
      * Updates an existing SitePage model.
@@ -124,6 +125,26 @@ class PageController extends Controller
         return $this->redirect(['index']);
     }
 
+    
+    
+    /**
+     * Crée une Site_Category : nouvelle rubrique de pages du site
+     * Si Succès, redirige vers la création d'une page
+     * @return mixed
+     */
+    public function actionCreateCategory()
+    {
+        $model = new SiteCategory();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['create-page', 'id_category' => $model->id]);
+        } else {
+            return $this->render('create-category', [
+                'model' => $model,
+            ]);
+        }
+    }
+    
     /**
      * Finds the SitePage model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

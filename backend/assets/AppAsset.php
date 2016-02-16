@@ -19,11 +19,13 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
-        'css/fonts.css'
+        'css/fonts.css',
+        'css/jquery.dataTables.min.css'
 
     ];
     public $js = [
         'js/backend.js',
+        'js/jquery.dataTables.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

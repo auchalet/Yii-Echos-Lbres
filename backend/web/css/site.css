@@ -123,3 +123,15 @@ a.desc:after {
     //float:right;
     cursor: pointer;
 }
+
+.list-page-item {
+    padding:20px;
+}
+
+#table-pages {
+    width: 100%
+}
+
+.statut_0 {
+    background-color:red;
+}
