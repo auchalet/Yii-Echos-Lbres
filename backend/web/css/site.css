@@ -93,8 +93,12 @@ a.desc:after {
     color: #999;
 }
 
-a {
+.nav-sidebar > li > a {
     color: white;
+}
+
+.nav-sidebar > li > a:hover {
+    color: rgb(157, 157, 157);
 }
 
 
