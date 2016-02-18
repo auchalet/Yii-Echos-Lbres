@@ -32,8 +32,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Catégories de pages'];
     
     <table id="table-pages" class="table-bordered table-responsive">
         <tbody>
+            
+            <?php foreach($pages as $k => $v): ?>
             <tr>
-                <?php foreach($pages as $k => $v): ?>
                 <th class="list-page-item">
                     Titre de la page : 
                     <br>
@@ -49,9 +50,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Catégories de pages'];
                     <?php foreach($status_pages[$k] as $val): ?>
                         <input type="checkbox" class="statut_<?= $val ?>" <?= ($val === '1')?'checked':'' ?>>
                     <?php endforeach; ?>
-                </th>                               
-                <?php endforeach; ?>
+                </th>       
             </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 
