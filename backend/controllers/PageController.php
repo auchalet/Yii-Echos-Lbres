@@ -40,7 +40,7 @@ class PageController extends Controller
         if($pages) {
             foreach($pages as $v) {
                 $users[] = User::findId($v->user_id);
-
+                $tags[] = $v->getTags();
                 //Récupération binaire des statuts 1 = OK ; 0 = !OK
                 $status_bin = str_split((string)$v->status);
                 $status[] = $status_bin;
@@ -58,7 +58,8 @@ class PageController extends Controller
             'category' => $category,
             'pages' => $pages,
             'status_pages' => $status,
-            'users' => $users
+            'users' => $users,
+            'tags' => $tags
         ]);
     }
 

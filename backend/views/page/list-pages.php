@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Accueil', 'url' => ['/site/index']
 $this->params['breadcrumbs'][] = ['label' => 'Catégories de pages'];
 
 //$json_pages = Json::encode($pages);
-//var_dump($status_pages)
+var_dump($tags);
 ?>
 <div class="site-page-index">
 
@@ -35,9 +35,10 @@ $this->params['breadcrumbs'][] = ['label' => 'Catégories de pages'];
             <tr>
                 <?php foreach($pages as $k => $v): ?>
                 <th class="list-page-item">
-                    Titre de la page : 
-                    <br>
+                    Titre :                     
                     <a href="<?= Url::to(['page/view-page', 'id' => $v['id']]) ?>"><?= $v['title'] ?></a>
+                    <br>
+                    Tags : 
                 </th>                               
                 <th class="list-page-item">
                     Crée par : <?= $users[$k]['username'] ?>
