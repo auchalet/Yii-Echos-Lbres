@@ -68,7 +68,7 @@ foreach ($page_categories as $k=>$v){
 
     
     
-    <div class="container-fluid">
+    <div class="container-fluid" id="page-body">
         <div class="row">
             <div class="col-md-2 col-sm-3 sidebar">
                 <i class="fa fa-arrow-left fa-6 open-sidebar" style="color:white;"></i>               
@@ -94,9 +94,6 @@ foreach ($page_categories as $k=>$v){
                     $menuItems[] = ['label' => 'Tchat', 'url' => ['/tchat/index']];   
 
                     
-                    if(Yii::$app->user->can('manageRbac')) {
-                        $menuItems[] = ['label' => 'Admin', 'url' => ['/rbac']];
-                    }
 
                     $menuItems[] = [
                         'label' => 'Logout (' . Yii::$app->user->identity->username . ')',

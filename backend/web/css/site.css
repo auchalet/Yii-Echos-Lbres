@@ -135,3 +135,7 @@ a.desc:after {
 .statut_0 {
     background-color:red;
 }
+
+#page-body {
+    padding-top:5%;
+}

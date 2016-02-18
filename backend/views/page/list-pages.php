@@ -32,8 +32,9 @@ var_dump($tags);
     
     <table id="table-pages" class="table-bordered table-responsive">
         <tbody>
+            
+            <?php foreach($pages as $k => $v): ?>
             <tr>
-                <?php foreach($pages as $k => $v): ?>
                 <th class="list-page-item">
                     Titre :                     
                     <a href="<?= Url::to(['page/view-page', 'id' => $v['id']]) ?>"><?= $v['title'] ?></a>
@@ -50,9 +51,9 @@ var_dump($tags);
                     <?php foreach($status_pages[$k] as $val): ?>
                         <input type="checkbox" class="statut_<?= $val ?>" <?= ($val === '1')?'checked':'' ?>>
                     <?php endforeach; ?>
-                </th>                               
-                <?php endforeach; ?>
+                </th>       
             </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 
