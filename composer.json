@@ -21,8 +21,7 @@
         "yiisoft/yii2-jui": "^2.0",
         "githubjeka/yii2-gui-rbac": "*",
         "FortAwesome/Font-Awesome": "*",
-        "2amigos/yii2-ckeditor-widget": "~1.0"
-
+        "2amigos/yii2-tinymce-widget" : "~1.1"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

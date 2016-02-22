@@ -139,3 +139,19 @@ a.desc:after {
 #page-body {
     padding-top:5%;
 }
+
+.bloc-cms {
+    border:solid;
+    margin:5px 0 10px 0;
+    padding:10px;
+}
+
+.bloc-cms > .fa-arrow-down, .fa-arrow-up {
+    float:right;
+    padding:10px;
+    cursor:pointer;
+}
+
+.fa-arrow-down ~ .form-group {
+    display:none;
+}
