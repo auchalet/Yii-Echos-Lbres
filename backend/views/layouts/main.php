@@ -15,7 +15,7 @@ AppAsset::register($this);
 $item_categ = array();
 $page_categories = SiteCategory::getAll();
 foreach ($page_categories as $k=>$v){
-    array_push($item_categ, ['label' => $v['title'], 'url' => ["page/list-pages", 'id_category' => $v['id']]]);
+    array_push($item_categ, ['label' => $v['title'], 'url' => ["/page/list-pages", 'id_category' => $v['id']]]);
 }
 
 //var_dump($item_categ); die;
@@ -37,7 +37,7 @@ foreach ($page_categories as $k=>$v){
     <?php
     NavBar::begin([
         'brandLabel' => 'Echos-Libres',
-
+        'id' => 'w0',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -49,7 +49,8 @@ foreach ($page_categories as $k=>$v){
   
         
         if(Yii::$app->user->can('manageRbac')) {
-            $menuItems[] = ['label' => 'Admin', 'url' => ['/rbac']];
+            $menuItems[] = ['label' => 'Rbac arbo', 'url' => ['/rbac']];
+            $menuItems[] = ['label' => 'Admin', 'url' => ['/admin']];
         }
         
         $menuItems[] = [
@@ -93,17 +94,10 @@ foreach ($page_categories as $k=>$v){
                     $menuItems[] = ['label' => 'Projets de la communauté', 'url' => ['/project/index']];   
                     $menuItems[] = ['label' => 'Tchat', 'url' => ['/tchat/index']];   
 
-                    
-
-                    $menuItems[] = [
-                        'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                        'url' => ['/site/logout'],
-                        'linkOptions' => ['data-method' => 'post']
-                    ];
                 }
 
                 echo Nav::widget([
-                    'options' => ['class' => 'nav nav-sidebar'],
+                    'options' => ['class' => 'nav nav-sidebar', 'id' => 'sidebar'],
                     'items' => $menuItems,
                 ]);
                 ?>

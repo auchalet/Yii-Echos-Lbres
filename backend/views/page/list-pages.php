@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\helpers\Json;
 use yii\i18n\Formatter;
 use yii\helpers\Url;
+use yii\rbac\DbManager;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -39,8 +40,8 @@ $this->params['breadcrumbs'][] = ['label' => 'Catégories de pages'];
                         <a href="<?= Url::to(['page/view-page', 'id' => $v['id']]) ?>"><?= $v['title'] ?></a>
                         <br>
                         Tags : 
-                        <?php foreach ($tags[$k] as $v): ?>
-                            <a href="<?= Url::to(['/tag/index']) ?>">#<?= $v->title ?></a>
+                        <?php foreach ($tags[$k] as $val): ?>
+                            <a href="<?= Url::to(['/tag/index']) ?>">#<?= $val->title ?></a>
                         <?php endforeach; ?>
                     </th>                               
                 <th class="list-page-item">
@@ -50,9 +51,16 @@ $this->params['breadcrumbs'][] = ['label' => 'Catégories de pages'];
                 </th>                               
                 <th class="list-page-item">
                     Statut : 
-                    <?php foreach($status_pages[$k] as $val): ?>
-                        <input type="checkbox" class="statut_<?= $val ?>" <?= ($val === '1')?'checked':'' ?>>
-                    <?php endforeach; ?>
+                    <!-- TODO : Faire l'affichage du statut en fonction du membre --> 
+                    <?php for($i=0;$i<$v['status'];$i++): ?>
+                        <input type="checkbox" class="statut_1" checked>
+                    <?php endfor; ?>
+                    <?php if(Yii::$app->authManager->checkAccess($users[$k]['id'],'membre')): ?>
+                        <?php for($j=$i;$j<3;$j++): ?>
+                            <input type="checkbox" class="statut_0">
+                        <?php endfor; ?>
+                        
+                    <?php endif; ?>
                 </th>       
             </tr>
             <?php endforeach; ?>

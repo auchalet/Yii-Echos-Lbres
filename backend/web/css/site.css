@@ -9,9 +9,14 @@ body {
     max-width: 100%
 }
 
-#w0, #w1, .sidebar {
+#w0, .sidebar {
     background-color: #5C554B;
     color: #d9d4cc;
+}
+
+#w1 {
+    background-color: #F5F4F9;
+    color:rgb(51, 51, 51);
 }
 
 .wrap {

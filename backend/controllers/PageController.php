@@ -41,9 +41,9 @@ class PageController extends Controller
             foreach($pages as $v) {
                 $users[] = User::findId($v->user_id);
                 $tags[] = $v->getTags();
-                //Récupération binaire des statuts 1 = OK ; 0 = !OK
-                $status_bin = str_split((string)$v->status);
-                $status[] = $status_bin;
+                //Récupération binaire des statuts 1 = OK ; 0 = !OK // SUPPRIME : on reste sur 1-2-3-4-5
+//                $status_bin = str_split((string)$v->status);
+//                $status[] = $status_bin;
 
             }
         } else {
@@ -57,7 +57,6 @@ class PageController extends Controller
         return $this->render('list-pages', [
             'category' => $category,
             'pages' => $pages,
-            'status_pages' => $status,
             'users' => $users,
             'tags' => $tags
         ]);
