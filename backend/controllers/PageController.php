@@ -10,6 +10,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\models\SiteCategory;
 use common\models\User;
+use common\models\Tag;
+use common\models\SitePageTag;
 
 /**
  * PageController implements the CRUD actions for SitePage model.
@@ -37,6 +39,8 @@ class PageController extends Controller
         $category = SiteCategory::getById($id_category);
         $pages = $category->getSitePages();
 
+        $users = array();
+        $tags = array();
         if($pages) {
             foreach($pages as $v) {
                 $users[] = User::findId($v->user_id);
@@ -46,11 +50,7 @@ class PageController extends Controller
 //                $status[] = $status_bin;
 
             }
-        } else {
-            $status = null;
-            $users = null;
         }
-
        
         
 
@@ -103,11 +103,27 @@ class PageController extends Controller
     {
         $model = $this->findModel($id);
 
+        $tags_page = new SitePageTag;
+        //$tags_page = $model->getTags();
+        
+        $tags = Tag::getAllTitle();
+
+        $tags_title = array();
+        foreach($tags as $v) {
+            array_push($tags_title, $v['title']);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
             return $this->redirect(['view', 'id' => $model->id]);
+            
         } else {
+            
+            
             return $this->render('update', [
                 'model' => $model,
+                'tags' => $tags_title,
+                'tags_page' => $tags_page
             ]);
         }
     }

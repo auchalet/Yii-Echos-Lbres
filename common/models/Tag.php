@@ -50,6 +50,17 @@ class Tag extends \yii\db\ActiveRecord
         ];
     }
 
+    
+    public static function getAll()
+    {
+        return static::find()->asArray()->all();
+    }
+    
+    public static function getAllTitle()
+    {
+        return static::find()->select('title')->asArray()->all();
+    }
+    
     /**
      * @return \yii\db\ActiveQuery
      */

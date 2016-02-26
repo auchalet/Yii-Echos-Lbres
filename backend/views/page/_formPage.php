@@ -3,11 +3,12 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\tinymce\TinyMce;
-use yii\jui;
+use yii\jui\AutoComplete;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\SitePage */
 /* @var $form yii\widgets\ActiveForm */
+//var_dump($tags_page);die;
 ?>
 <pre>Faire des blocs qu'on peut cacher en JS // En bas, bloc SEO affiché pour le membre SEO (metas/slug)</pre>
 <div class="site-page-form">
@@ -71,19 +72,28 @@ use yii\jui;
     <?php else: ?>
         <?= $form->field($model, 'status')->hiddenInput(['value'=> $model->status])->label(false); ?>        
     <?php endif; ?>
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'created_at')->textInput()->hiddenInput()->label(false) ?>
     
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?= $form->field($model, 'category_id')->hiddenInput()->label(false) ?>
 
-
-
-    <?= $form->field($model, 'category_id')->textInput(['value' => '6']) ?>
-
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'user_id')->textInput()->hiddenInput()->label(false) ?>
+    
+    <div id="bloc-tags" class="bloc-cms">
+        <i class="fa fa-arrow-down"></i>
+        <p>Tags</p>       
+        <?= $form->field($tags_page, 'tag_id')->widget(AutoComplete::className(), [
+            'model' => $tags,
+            'name' => 'tags',
+            'clientOptions' => [
+                'source' => $tags
+            ]
+        ]) ?>
+    </div>
 
     <div class="form-group">
     <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
+    
 
 <?php ActiveForm::end(); ?>
 

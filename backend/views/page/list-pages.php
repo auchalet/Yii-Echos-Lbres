@@ -37,11 +37,11 @@ $this->params['breadcrumbs'][] = ['label' => 'Catégories de pages'];
             <tr>
                 <th class="list-page-item">
                         Titre :                     
-                        <a href="<?= Url::to(['page/view-page', 'id' => $v['id']]) ?>"><?= $v['title'] ?></a>
+                        <a href="<?= Url::to(['page/update', 'id' => $v['id']]) ?>"><?= $v['title'] ?></a>
                         <br>
                         Tags : 
                         <?php foreach ($tags[$k] as $val): ?>
-                            <a href="<?= Url::to(['/tag/index']) ?>">#<?= $val->title ?></a>
+                            <a href="<?= Url::to(['/tag/list', 'tag' => $val->id]) ?>">#<?= $val->title ?></a>
                         <?php endforeach; ?>
                     </th>                               
                 <th class="list-page-item">
@@ -60,8 +60,16 @@ $this->params['breadcrumbs'][] = ['label' => 'Catégories de pages'];
                             <input type="checkbox" class="statut_0">
                         <?php endfor; ?>
                         
+                    <?php else: ?>
+                        <?php for($j=$i;$j<5;$j++): ?>
+                            <input type="checkbox" class="statut_0">
+                        <?php endfor; ?>
                     <?php endif; ?>
-                </th>       
+                </th>
+                <th>
+                    <a href="<?= Yii::$app->urlManagerFrontEnd->createUrl(['/page/view', 'id' => $v->id]) ?>" class="fa fa-eye" target="_blank"></a>                                                       
+                    <a href="<?= Url::to(['page/update', 'id' => $v->id]) ?>" class="fa fa-edit" target="_blank"></a>                                                       
+                </th>
             </tr>
             <?php endforeach; ?>
         </tbody>

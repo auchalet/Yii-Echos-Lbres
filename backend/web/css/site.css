@@ -153,10 +153,14 @@ a.desc:after {
 
 .bloc-cms > .fa-arrow-down, .fa-arrow-up {
     float:right;
-    padding:10px;
+    padding:5px;
     cursor:pointer;
 }
 
 .fa-arrow-down ~ .form-group {
     display:none;
+}
+
+.fa {
+    font-size: 22px;
 }
